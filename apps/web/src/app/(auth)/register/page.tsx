@@ -53,7 +53,7 @@ export default function RegisterPage() {
         description: 'Bienvenido a Progressia.',
         variant: 'success',
       })
-      
+
       router.push('/onboarding')
     } catch (error) {
       toast({
@@ -70,7 +70,7 @@ export default function RegisterPage() {
     <div className="min-h-screen bg-dark-950 flex items-center justify-center px-4 py-12">
       {/* Background effects */}
       <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-brand-900/20 via-dark-950 to-dark-950" />
-      
+
       <div className="relative z-10 w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
@@ -164,7 +164,7 @@ export default function RegisterPage() {
                   {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
               </div>
-              
+
               {/* Password strength */}
               {formData.password && (
                 <div className="mt-3 space-y-2">
@@ -172,15 +172,14 @@ export default function RegisterPage() {
                     {[1, 2, 3, 4].map((level) => (
                       <div
                         key={level}
-                        className={`h-1 flex-1 rounded-full transition-colors ${
-                          level <= passwordStrength
+                        className={`h-1 flex-1 rounded-full transition-colors ${level <= passwordStrength
                             ? passwordStrength <= 2
                               ? 'bg-red-500'
                               : passwordStrength === 3
-                              ? 'bg-yellow-500'
-                              : 'bg-green-500'
+                                ? 'bg-yellow-500'
+                                : 'bg-green-500'
                             : 'bg-dark-700'
-                        }`}
+                          }`}
                       />
                     ))}
                   </div>
@@ -193,11 +192,10 @@ export default function RegisterPage() {
                     ].map(({ key, label }) => (
                       <div
                         key={key}
-                        className={`flex items-center gap-1 ${
-                          passwordChecks[key as keyof typeof passwordChecks]
+                        className={`flex items-center gap-1 ${passwordChecks[key as keyof typeof passwordChecks]
                             ? 'text-green-500'
                             : 'text-gray-500'
-                        }`}
+                          }`}
                       >
                         <CheckCircle2 className="w-3 h-3" />
                         {label}
