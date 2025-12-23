@@ -1,0 +1,485 @@
+// TradeX Academy - Prisma Schema
+// Plataforma educativa de trading estilo Duolingo
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ==================== AUTH & USUARIOS ====================
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum Experience {
+  BEGINNER
+  INTERMEDIATE
+  PRO
+}
+
+enum Objective {
+  LEARN
+  OPERATE
+  COPY
+}
+
+model User {
+  id            String   @id @default(cuid())
+  email         String   @unique
+  passwordHash  String
+  emailVerified Boolean  @default(false)
+  verifyToken   String?
+  resetToken    String?
+  resetExpires  DateTime?
+  role          Role     @default(USER)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Relaciones
+  profile           Profile?
+  sessions          Session[]
+  lessonProgress    UserLessonProgress[]
+  quizAttempts      QuizAttempt[]
+  xpEvents          XPEvent[]
+  streak            Streak?
+  userBadges        UserBadge[]
+  leagueEntries     LeagueEntry[]
+  subscription      Subscription?
+  
+  // Amigos
+  sentRequests      FriendRequest[] @relation("SentRequests")
+  receivedRequests  FriendRequest[] @relation("ReceivedRequests")
+  friendsAsUser1    Friendship[]    @relation("FriendshipUser1")
+  friendsAsUser2    Friendship[]    @relation("FriendshipUser2")
+  
+  // Retos
+  challengeMembers  ChallengeMember[]
+  createdChallenges Challenge[]     @relation("ChallengeCreator")
+
+  @@index([email])
+}
+
+model Profile {
+  id          String     @id @default(cuid())
+  userId      String     @unique
+  displayName String
+  username    String     @unique
+  country     String?
+  timezone    String     @default("America/Mexico_City")
+  experience  Experience @default(BEGINNER)
+  objective   Objective  @default(LEARN)
+  avatarUrl   String?
+  avatarPreset String?   @default("default")
+  bio         String?    @db.VarChar(280)
+  dailyGoal   Int        @default(10) // minutos: 5, 10 o 15
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([username])
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  userId    String
+  token     String   @unique
+  expiresAt DateTime
+  ipAddress String?
+  userAgent String?
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([token])
+  @@index([userId])
+}
+
+// ==================== ESTRUCTURA EDUCATIVA ====================
+
+model Level {
+  id          String   @id @default(cuid())
+  number      Int      @unique
+  title       String
+  description String?
+  imageUrl    String?
+  xpRequired  Int      @default(0)
+  isPublished Boolean  @default(false)
+  isPro       Boolean  @default(false) // Requiere suscripción Pro
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  units Unit[]
+
+  @@index([number])
+}
+
+model Unit {
+  id          String   @id @default(cuid())
+  levelId     String
+  number      Int
+  title       String
+  description String?
+  imageUrl    String?
+  isPublished Boolean  @default(false)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  level   Level    @relation(fields: [levelId], references: [id], onDelete: Cascade)
+  lessons Lesson[]
+
+  @@unique([levelId, number])
+  @@index([levelId])
+}
+
+model Lesson {
+  id          String   @id @default(cuid())
+  unitId      String
+  number      Int
+  title       String
+  description String?
+  content     String   @db.Text // Markdown content
+  xpReward    Int      @default(10)
+  duration    Int      @default(5) // minutos estimados
+  isPublished Boolean  @default(false)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  unit           Unit                 @relation(fields: [unitId], references: [id], onDelete: Cascade)
+  quizQuestions  QuizQuestion[]
+  userProgress   UserLessonProgress[]
+  quizAttempts   QuizAttempt[]
+
+  @@unique([unitId, number])
+  @@index([unitId])
+}
+
+enum QuizType {
+  MULTIPLE_CHOICE
+  TRUE_FALSE
+  ORDER_STEPS
+  BEST_DECISION
+}
+
+model QuizQuestion {
+  id          String   @id @default(cuid())
+  lessonId    String
+  type        QuizType
+  question    String   @db.Text
+  options     Json     // Array de opciones
+  correctAnswer Json   // Respuesta(s) correcta(s)
+  explanation String?  @db.Text
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  lesson Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  @@index([lessonId])
+}
+
+// ==================== PROGRESO ====================
+
+model UserLessonProgress {
+  id          String   @id @default(cuid())
+  userId      String
+  lessonId    String
+  completed   Boolean  @default(false)
+  completedAt DateTime?
+  xpEarned    Int      @default(0)
+  timeSpent   Int      @default(0) // segundos
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lesson Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, lessonId])
+  @@index([userId])
+  @@index([lessonId])
+}
+
+model QuizAttempt {
+  id          String   @id @default(cuid())
+  userId      String
+  lessonId    String
+  answers     Json     // Respuestas del usuario
+  score       Int      // Puntuación 0-100
+  isPerfect   Boolean  @default(false)
+  xpEarned    Int      @default(0)
+  createdAt   DateTime @default(now())
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lesson Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([lessonId])
+}
+
+// ==================== GAMIFICACIÓN ====================
+
+enum XPEventType {
+  LESSON_COMPLETE
+  QUIZ_PASS
+  QUIZ_PERFECT
+  UNIT_COMPLETE
+  LEVEL_COMPLETE
+  DAILY_GOAL
+  CHALLENGE_WIN
+  CHALLENGE_PARTICIPATE
+  STREAK_BONUS
+}
+
+model XPEvent {
+  id        String      @id @default(cuid())
+  userId    String
+  type      XPEventType
+  amount    Int
+  metadata  Json?       // Info adicional
+  createdAt DateTime    @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([createdAt])
+}
+
+model Streak {
+  id            String    @id @default(cuid())
+  userId        String    @unique
+  currentStreak Int       @default(0)
+  longestStreak Int       @default(0)
+  lastActiveAt  DateTime?
+  freezeCount   Int       @default(0) // Streak freezes disponibles
+  frozenUntil   DateTime? // Si está congelado
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Badge {
+  id          String   @id @default(cuid())
+  code        String   @unique
+  name        String
+  description String
+  imageUrl    String?
+  xpBonus     Int      @default(0)
+  createdAt   DateTime @default(now())
+
+  userBadges UserBadge[]
+}
+
+model UserBadge {
+  id        String   @id @default(cuid())
+  userId    String
+  badgeId   String
+  earnedAt  DateTime @default(now())
+
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  badge Badge @relation(fields: [badgeId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, badgeId])
+  @@index([userId])
+}
+
+// ==================== LIGAS Y LEADERBOARD ====================
+
+enum League {
+  BRONZE
+  SILVER
+  GOLD
+  DIAMOND
+}
+
+model LeagueWeek {
+  id        String   @id @default(cuid())
+  weekStart DateTime
+  weekEnd   DateTime
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+
+  entries LeagueEntry[]
+
+  @@unique([weekStart])
+  @@index([isActive])
+}
+
+model LeagueEntry {
+  id           String   @id @default(cuid())
+  leagueWeekId String
+  userId       String
+  league       League   @default(BRONZE)
+  weeklyXP     Int      @default(0)
+  rank         Int?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  leagueWeek LeagueWeek @relation(fields: [leagueWeekId], references: [id], onDelete: Cascade)
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([leagueWeekId, userId])
+  @@index([leagueWeekId])
+  @@index([userId])
+  @@index([weeklyXP])
+}
+
+// ==================== SOCIAL: AMIGOS ====================
+
+enum FriendRequestStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+}
+
+model FriendRequest {
+  id         String              @id @default(cuid())
+  senderId   String
+  receiverId String
+  status     FriendRequestStatus @default(PENDING)
+  createdAt  DateTime            @default(now())
+  updatedAt  DateTime            @updatedAt
+
+  sender   User @relation("SentRequests", fields: [senderId], references: [id], onDelete: Cascade)
+  receiver User @relation("ReceivedRequests", fields: [receiverId], references: [id], onDelete: Cascade)
+
+  @@unique([senderId, receiverId])
+  @@index([senderId])
+  @@index([receiverId])
+}
+
+model Friendship {
+  id        String   @id @default(cuid())
+  user1Id   String
+  user2Id   String
+  createdAt DateTime @default(now())
+
+  user1 User @relation("FriendshipUser1", fields: [user1Id], references: [id], onDelete: Cascade)
+  user2 User @relation("FriendshipUser2", fields: [user2Id], references: [id], onDelete: Cascade)
+
+  @@unique([user1Id, user2Id])
+  @@index([user1Id])
+  @@index([user2Id])
+}
+
+// ==================== RETOS (CHALLENGES) ====================
+
+enum ChallengeType {
+  DUEL        // 1v1
+  GROUP       // Equipo
+}
+
+enum ChallengeGoalType {
+  LESSONS_COMPLETE  // Completa X lecciones
+  XP_EARNED         // Gana X XP
+  PERFECT_QUIZZES   // Haz X quizzes perfectos
+  TOTAL_XP          // Suma X XP (grupo)
+}
+
+enum ChallengeStatus {
+  PENDING     // Esperando participantes
+  ACTIVE      // En progreso
+  COMPLETED   // Terminado
+  CANCELLED   // Cancelado
+}
+
+model Challenge {
+  id          String            @id @default(cuid())
+  creatorId   String
+  type        ChallengeType
+  goalType    ChallengeGoalType
+  goalTarget  Int               // Cantidad objetivo
+  title       String
+  description String?
+  status      ChallengeStatus   @default(PENDING)
+  startsAt    DateTime          @default(now())
+  endsAt      DateTime
+  winnerId    String?           // Solo para duelos
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+
+  creator User @relation("ChallengeCreator", fields: [creatorId], references: [id], onDelete: Cascade)
+  members ChallengeMember[]
+
+  @@index([creatorId])
+  @@index([status])
+  @@index([endsAt])
+}
+
+model ChallengeMember {
+  id          String   @id @default(cuid())
+  challengeId String
+  userId      String
+  progress    Int      @default(0)
+  isWinner    Boolean  @default(false)
+  joinedAt    DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  challenge Challenge @relation(fields: [challengeId], references: [id], onDelete: Cascade)
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([challengeId, userId])
+  @@index([challengeId])
+  @@index([userId])
+}
+
+// ==================== SUSCRIPCIÓN ====================
+
+enum SubscriptionStatus {
+  ACTIVE
+  CANCELLED
+  PAST_DUE
+  EXPIRED
+}
+
+enum SubscriptionPlan {
+  FREE
+  PRO_MONTHLY
+  PRO_YEARLY
+}
+
+model Subscription {
+  id                   String             @id @default(cuid())
+  userId               String             @unique
+  stripeCustomerId     String?            @unique
+  stripeSubscriptionId String?            @unique
+  plan                 SubscriptionPlan   @default(FREE)
+  status               SubscriptionStatus @default(ACTIVE)
+  currentPeriodStart   DateTime?
+  currentPeriodEnd     DateTime?
+  cancelAtPeriodEnd    Boolean            @default(false)
+  createdAt            DateTime           @default(now())
+  updatedAt            DateTime           @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([stripeCustomerId])
+}
+
+// ==================== RATE LIMITING ====================
+
+model RateLimit {
+  id         String   @id @default(cuid())
+  identifier String   // IP o userId
+  endpoint   String
+  count      Int      @default(1)
+  windowStart DateTime @default(now())
+  
+  @@unique([identifier, endpoint])
+  @@index([identifier])
+  @@index([windowStart])
+}
+
+// Alias para la relación Challenge -> User (creator)
+// Prisma requiere que el modelo referenciado exista, usamos User
+// pero lo definimos como "Creator" en la relación
+
