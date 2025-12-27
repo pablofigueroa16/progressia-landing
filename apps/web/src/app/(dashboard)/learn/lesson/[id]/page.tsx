@@ -12,10 +12,13 @@ import {
   Sparkles,
   Heart,
   HeartCrack,
+  Crown,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { useAuth } from '@/components/providers'
 import { getBeginnerLessonById } from '@/lib/learn/beginner-level'
 import { markBeginnerLessonCompleted } from '@/lib/learn/progress-storage'
+import { PRO_PLAN_BENEFITS } from '@/lib/billing/pro-benefits'
 
 const MAX_LIVES = 3
 
@@ -104,6 +107,7 @@ type Phase = 'content' | 'quiz' | 'results' | 'gameOver'
 
 export default function LessonPage({ params }: { params: { id: string } }) {
   const router = useRouter()
+  const { user } = useAuth()
   const [phase, setPhase] = useState<Phase>('content')
   const [lives, setLives] = useState(MAX_LIVES)
   const [currentQuestion, setCurrentQuestion] = useState(0)
@@ -111,6 +115,8 @@ export default function LessonPage({ params }: { params: { id: string } }) {
   const [showFeedback, setShowFeedback] = useState(false)
   const [feedbackMessage, setFeedbackMessage] = useState<{ text: string; subtitle: string } | null>(null)
   const [showConfetti, setShowConfetti] = useState(false)
+  const [isProModalOpen, setIsProModalOpen] = useState(false)
+  const [isSubscribing, setIsSubscribing] = useState(false)
   const [results, setResults] = useState<{
     correct: number
     total: number
@@ -193,6 +199,35 @@ export default function LessonPage({ params }: { params: { id: string } }) {
     markBeginnerLessonCompleted(lesson.id)
     setShowConfetti(true)
     setPhase('results')
+  }
+
+  const handleSubscribePro = async () => {
+    setIsSubscribing(true)
+    try {
+      const res = await fetch('/api/billing/create-checkout-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          plan: 'PRO_MONTHLY',
+          successPath: `/learn/lesson/${params.id}?upgraded=true`,
+          cancelPath: `/learn/lesson/${params.id}?upgradeCanceled=true`,
+        }),
+      })
+
+      if (res.status === 401) {
+        router.push('/pricing')
+        return
+      }
+
+      const data = await res.json()
+      if (data.url) {
+        window.location.href = data.url
+      }
+    } catch (error) {
+      console.error('Checkout error:', error)
+    } finally {
+      setIsSubscribing(false)
+    }
   }
 
   // ==================== GAME OVER PHASE ====================
@@ -278,6 +313,23 @@ export default function LessonPage({ params }: { params: { id: string } }) {
             >
               INTENTAR DE NUEVO
             </button>
+
+            {!user?.isPro && (
+              <button
+                onClick={() => setIsProModalOpen(true)}
+                className="duo-btn w-full text-center justify-center"
+                style={{
+                  background: 'linear-gradient(to bottom, #a855f7 0%, #7c3aed 100%)',
+                  boxShadow: '0 4px 0 #5b21b6, 0 6px 10px rgba(0,0,0,0.15)',
+                }}
+              >
+                <span className="inline-flex items-center justify-center gap-2">
+                  <Crown className="w-5 h-5" />
+                  CONTINUAR CON PRO
+                </span>
+              </button>
+            )}
+
             <button
               onClick={() => router.push('/learn')}
               className="duo-btn outline w-full text-center justify-center"
@@ -286,6 +338,105 @@ export default function LessonPage({ params }: { params: { id: string } }) {
             </button>
           </motion.div>
         </motion.div>
+
+        <AnimatePresence>
+          {isProModalOpen && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50"
+            >
+              {/* Backdrop */}
+              <button
+                aria-label="Cerrar modal"
+                onClick={() => setIsProModalOpen(false)}
+                className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+              />
+
+              {/* Modal */}
+              <div className="absolute inset-0 flex items-center justify-center px-4 py-6">
+                <motion.div
+                  initial={{ y: 20, scale: 0.98, opacity: 0 }}
+                  animate={{ y: 0, scale: 1, opacity: 1 }}
+                  exit={{ y: 20, scale: 0.98, opacity: 0 }}
+                  transition={{ type: 'spring', duration: 0.45 }}
+                  className="w-full max-w-lg"
+                >
+                  <div className="bg-gradient-to-br from-brand-500/20 to-accent-purple/20 border-2 border-brand-500/30 rounded-3xl p-6 sm:p-7 text-left shadow-[0_0_80px_rgba(168,85,247,0.15)]">
+                    <div className="flex items-start justify-between gap-4">
+                      <div>
+                        <div className="inline-flex items-center gap-2 text-brand-300 font-semibold">
+                          <Crown className="w-5 h-5" />
+                          Progressia Pro
+                        </div>
+                        <h2 className="text-2xl sm:text-3xl font-black text-white mt-2">
+                          Continúa esta lección sin quedarte sin vidas
+                        </h2>
+                      </div>
+
+                      <button
+                        onClick={() => setIsProModalOpen(false)}
+                        className="p-2 rounded-xl text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
+                        aria-label="Cerrar"
+                      >
+                        <X className="w-6 h-6" />
+                      </button>
+                    </div>
+
+                    <p className="text-gray-300 mt-3">
+                      Suscríbete a Pro para desbloquear todo el contenido y seguir avanzando sin interrupciones.
+                    </p>
+
+                    <div className="mt-5">
+                      <div className="text-sm font-semibold text-brand-300 mb-3">
+                        Beneficios de Pro
+                      </div>
+                      <ul className="space-y-3">
+                        {PRO_PLAN_BENEFITS.map((benefit) => (
+                          <li key={benefit} className="flex items-start gap-3">
+                            <div className="mt-0.5 w-6 h-6 rounded-lg bg-accent-purple/20 text-accent-purple flex items-center justify-center flex-shrink-0">
+                              <Check className="w-4 h-4" />
+                            </div>
+                            <span className="text-gray-200">{benefit}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="mt-6 space-y-3">
+                      <button
+                        onClick={handleSubscribePro}
+                        disabled={isSubscribing}
+                        className={cn(
+                          'duo-btn w-full text-center justify-center',
+                          isSubscribing && 'opacity-80 pointer-events-none'
+                        )}
+                        style={{
+                          background: 'linear-gradient(to bottom, #a855f7 0%, #7c3aed 100%)',
+                          boxShadow: '0 4px 0 #5b21b6, 0 6px 10px rgba(0,0,0,0.15)',
+                        }}
+                      >
+                        {isSubscribing ? 'CARGANDO...' : 'SUSCRIBIRSE'}
+                      </button>
+
+                      <button
+                        onClick={() => setIsProModalOpen(false)}
+                        className="duo-btn outline w-full text-center justify-center"
+                      >
+                        VOLVER
+                      </button>
+                    </div>
+
+                    <p className="text-xs text-gray-400 mt-4">
+                      Al suscribirte, serás redirigido a un checkout seguro. Puedes cancelar cuando quieras.
+                    </p>
+                  </div>
+                </motion.div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     )
   }
@@ -306,6 +457,7 @@ export default function LessonPage({ params }: { params: { id: string } }) {
             </button>
 
             <div className="flex items-center gap-3">
+              <p>Vidas: </p>
               <LivesDisplay lives={lives} maxLives={MAX_LIVES} />
             </div>
 

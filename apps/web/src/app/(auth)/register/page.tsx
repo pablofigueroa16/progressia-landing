@@ -67,23 +67,22 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="min-h-screen bg-dark-950 flex items-center justify-center px-4 py-12">
+    <div className="min-h-screen bg-dark-950 flex items-center justify-center px-4 py-4">
       {/* Background effects */}
       <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-brand-900/20 via-dark-950 to-dark-950" />
 
       <div className="relative z-10 w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center gap-2 mb-6">
+          <Link href="/" className="inline-flex items-center gap-2">
             <Image
               src="/progressia.png"
               alt="Progressia"
-              width={200}
-              height={60}
-              className="h-12 w-auto"
+              width={300}
+              height={80}
+              className="h-28 w-auto"
               priority
             />
-            <span className="text-2xl font-bold font-display text-white">Progressia</span>
           </Link>
           <h1 className="text-2xl font-bold text-white mb-2">Crea tu cuenta</h1>
           <p className="text-gray-400">Comienza tu viaje en el trading</p>
@@ -173,12 +172,12 @@ export default function RegisterPage() {
                       <div
                         key={level}
                         className={`h-1 flex-1 rounded-full transition-colors ${level <= passwordStrength
-                            ? passwordStrength <= 2
-                              ? 'bg-red-500'
-                              : passwordStrength === 3
-                                ? 'bg-yellow-500'
-                                : 'bg-green-500'
-                            : 'bg-dark-700'
+                          ? passwordStrength <= 2
+                            ? 'bg-red-500'
+                            : passwordStrength === 3
+                              ? 'bg-yellow-500'
+                              : 'bg-green-500'
+                          : 'bg-dark-700'
                           }`}
                       />
                     ))}
@@ -193,8 +192,8 @@ export default function RegisterPage() {
                       <div
                         key={key}
                         className={`flex items-center gap-1 ${passwordChecks[key as keyof typeof passwordChecks]
-                            ? 'text-green-500'
-                            : 'text-gray-500'
+                          ? 'text-green-500'
+                          : 'text-gray-500'
                           }`}
                       >
                         <CheckCircle2 className="w-3 h-3" />

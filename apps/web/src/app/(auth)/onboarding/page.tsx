@@ -3,11 +3,11 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
-import { 
-  TrendingUp, 
-  ChevronRight, 
-  GraduationCap, 
-  LineChart, 
+import {
+  TrendingUp,
+  ChevronRight,
+  GraduationCap,
+  LineChart,
   Copy,
   Clock,
   Target,
@@ -133,7 +133,7 @@ export default function OnboardingPage() {
     <div className="min-h-screen bg-dark-950 flex flex-col">
       {/* Background */}
       <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-brand-900/20 via-dark-950 to-dark-950" />
-      
+
       {/* Progress bar */}
       <div className="relative z-10 w-full h-1 bg-dark-800">
         <motion.div
@@ -240,4 +240,3 @@ export default function OnboardingPage() {
     </div>
   )
 }
-

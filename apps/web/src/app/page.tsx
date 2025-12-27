@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+import { PRO_PLAN_BENEFITS } from '@/lib/billing/pro-benefits'
 import {
   GraduationCap,
   Trophy,
@@ -219,15 +220,7 @@ export default function LandingPage() {
                 <p className="text-sm text-gray-400 mt-1">o $149/año (ahorra 22%)</p>
               </div>
               <ul className="space-y-4 mb-8">
-                {[
-                  'Todos los niveles desbloqueados',
-                  'Retos ilimitados',
-                  'Estadísticas avanzadas',
-                  'Gráficos de progreso',
-                  'Journal de trading (próximamente)',
-                  'Coach AI (próximamente)',
-                  'Soporte prioritario',
-                ].map((item, i) => (
+                {PRO_PLAN_BENEFITS.map((item, i) => (
                   <li key={i} className="flex items-center gap-3">
                     <Star className="w-5 h-5 text-accent-gold" />
                     <span className="text-gray-300">{item}</span>

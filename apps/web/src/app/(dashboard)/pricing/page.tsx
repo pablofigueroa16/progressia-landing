@@ -91,6 +91,8 @@ export default function PricingPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           plan: isYearly ? 'PRO_YEARLY' : 'PRO_MONTHLY',
+          successPath: '/pricing?success=true',
+          cancelPath: '/pricing?canceled=true',
         }),
       })
 
