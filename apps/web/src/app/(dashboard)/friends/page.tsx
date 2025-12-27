@@ -110,17 +110,27 @@ export default function FriendsPage() {
       <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-brand-900/10 via-dark-950 to-dark-950 pointer-events-none" />
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 py-8">
-        <div className="flex items-center justify-between mb-8">
-          <div>
-            <h1 className="text-3xl font-bold text-white mb-2">Amigos</h1>
-            <p className="text-gray-400">
-              {friends.length} amigos • {friends.filter((f) => f.isOnline).length} en línea
-            </p>
+        <div className="mb-8">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+            <div>
+              <h1 className="text-3xl font-bold text-white mb-2">Amigos</h1>
+              <p className="text-gray-400">
+                {friends.length} amigos • {friends.filter((f) => f.isOnline).length} en línea
+              </p>
+            </div>
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-brand-500/10 border border-brand-500/20">
+                <Users className="w-5 h-5 text-brand-400" />
+                <span className="text-brand-300 font-bold">
+                  {friends.filter((f) => f.isOnline).length} online
+                </span>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Search */}
-        <Card className="bg-dark-800 border-dark-700 mb-8">
+        <Card className="bg-gradient-to-r from-dark-800 to-dark-900 border-dark-700 mb-8">
           <CardContent className="p-4">
             <div className="flex gap-3">
               <Input

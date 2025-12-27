@@ -215,14 +215,22 @@ export default function OnboardingPage() {
                 {currentStep > 0 && (
                   <Button
                     variant="outline"
-                    className="flex-1 border-dark-600 text-white hover:bg-dark-800"
+                    className={cn(
+                      'flex-1 rounded-2xl border-2 border-b-4 text-sm font-bold transition-all duration-150 ease-out',
+                      'active:translate-y-0.5 active:border-b-2',
+                      'border-dark-600 text-white hover:bg-dark-800 hover:border-dark-500'
+                    )}
                     onClick={() => setCurrentStep(currentStep - 1)}
                   >
                     Atrás
                   </Button>
                 )}
                 <Button
-                  className="flex-1 group"
+                  className={cn(
+                    'flex-1 group rounded-2xl border-2 border-b-4 text-sm font-bold transition-all duration-150 ease-out',
+                    'active:translate-y-0.5 active:border-b-2',
+                    'border-brand-600/40'
+                  )}
                   onClick={handleNext}
                   disabled={!selections[step.id]}
                   isLoading={isLoading}

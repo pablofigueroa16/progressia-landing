@@ -108,18 +108,36 @@ export default function PlayPage() {
 
   return (
     <div className="min-h-screen bg-dark-950 pb-24 md:pb-8">
-      <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-accent-purple/10 via-dark-950 to-dark-950 pointer-events-none" />
+      <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-brand-900/10 via-dark-950 to-dark-950 pointer-events-none" />
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 py-8">
-        <div className="flex items-center justify-between mb-8">
-          <div>
-            <h1 className="text-3xl font-bold text-white mb-2">Jugar</h1>
-            <p className="text-gray-400">Desafía a tus amigos y gana recompensas</p>
+        <div className="mb-8">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+            <div>
+              <h1 className="text-3xl font-bold text-white mb-2">Jugar</h1>
+              <p className="text-gray-400">Desafía a tus amigos y gana recompensas</p>
+            </div>
+            <Button onClick={() => setShowCreateModal(true)} className="gap-2">
+              <Plus className="w-5 h-5" />
+              Nuevo Reto
+            </Button>
           </div>
-          <Button onClick={() => setShowCreateModal(true)} className="gap-2">
-            <Plus className="w-5 h-5" />
-            Nuevo Reto
-          </Button>
+
+          <Card className="bg-gradient-to-r from-dark-800 to-dark-900 border-dark-700">
+            <CardContent className="p-6">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-xl bg-accent-purple/20 flex items-center justify-center flex-shrink-0">
+                  <Swords className="w-6 h-6 text-accent-purple" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h2 className="font-semibold text-white mb-1">Retos estilo Duolingo</h2>
+                  <p className="text-sm text-gray-400">
+                    Compite 1v1 o en grupo para ganar XP, subir de liga y mantener tu racha.
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
 
         {/* Create Challenge Options */}
@@ -128,7 +146,7 @@ export default function PlayPage() {
             <Card
               key={type.type}
               interactive
-              className="bg-dark-800 border-dark-700 overflow-hidden group"
+              className="bg-dark-800 border-dark-700 overflow-hidden group hover:border-dark-600 transition-colors"
               onClick={() => setShowCreateModal(true)}
             >
               <div className={cn(

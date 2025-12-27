@@ -80,7 +80,7 @@ export default function DashboardLayout({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <Link href="/learn" className="flex items-center gap-2">
+            <Link href="/" className="flex items-center gap-2">
               <Image
                 src="/progressia.png"
                 alt="Progressia"
@@ -100,10 +100,11 @@ export default function DashboardLayout({
                     key={item.name}
                     href={item.href}
                     className={cn(
-                      'flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all',
+                      'flex items-center gap-2 px-4 py-2 rounded-2xl border-2 border-b-4 text-sm font-bold transition-all duration-150 ease-out',
+                      'active:translate-y-0.5 active:border-b-2',
                       isActive
-                        ? 'bg-brand-500/20 text-brand-400'
-                        : 'text-gray-400 hover:text-white hover:bg-white/5'
+                        ? 'bg-brand-500/20 text-brand-200 border-brand-500/40'
+                        : 'text-gray-400 border-white/10 hover:text-white hover:bg-white/5 hover:border-brand-500/30'
                     )}
                   >
                     <item.icon className="w-5 h-5" />
@@ -170,10 +171,11 @@ export default function DashboardLayout({
                     href={item.href}
                     onClick={() => setIsMobileMenuOpen(false)}
                     className={cn(
-                      'flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all',
+                      'flex items-center gap-3 px-4 py-3 rounded-2xl border-2 border-b-4 text-sm font-bold transition-all duration-150 ease-out',
+                      'active:translate-y-0.5 active:border-b-2',
                       isActive
-                        ? 'bg-brand-500/20 text-brand-400'
-                        : 'text-gray-400 hover:text-white hover:bg-white/5'
+                        ? 'bg-brand-500/20 text-brand-200 border-brand-500/40'
+                        : 'text-gray-400 border-white/10 hover:text-white hover:bg-white/5 hover:border-brand-500/30'
                     )}
                   >
                     <item.icon className="w-5 h-5" />
@@ -188,7 +190,11 @@ export default function DashboardLayout({
               </div>
               <button
                 onClick={handleLogout}
-                className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-red-400 hover:bg-red-500/10"
+                className={cn(
+                  'w-full flex items-center gap-3 px-4 py-3 rounded-2xl border-2 border-b-4 text-sm font-bold transition-all duration-150 ease-out',
+                  'active:translate-y-0.5 active:border-b-2',
+                  'text-red-400 border-red-500/30 hover:bg-red-500/10 hover:border-red-500/50'
+                )}
               >
                 <LogOut className="w-5 h-5" />
                 Cerrar sesión
@@ -213,8 +219,11 @@ export default function DashboardLayout({
                 key={item.name}
                 href={item.href}
                 className={cn(
-                  'flex flex-col items-center gap-1 px-3 py-2 rounded-lg transition-all',
-                  isActive ? 'text-brand-400' : 'text-gray-500'
+                  'flex flex-col items-center gap-1 px-3 py-1.5 rounded-2xl border-2 border-b-4 transition-all duration-150 ease-out',
+                  'active:translate-y-0.5 active:border-b-2',
+                  isActive
+                    ? 'text-brand-200 bg-brand-500/20 border-brand-500/40'
+                    : 'text-gray-500 border-white/10 hover:text-white hover:bg-white/5 hover:border-brand-500/30'
                 )}
               >
                 <item.icon className="w-6 h-6" />

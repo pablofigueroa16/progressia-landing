@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import {
   Settings,
@@ -18,7 +18,7 @@ import {
   Lock,
   ChevronRight,
 } from 'lucide-react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge, XPBadge, StreakBadge, LeagueBadge } from '@/components/ui/badge'
@@ -26,6 +26,7 @@ import { UserAvatar } from '@/components/ui/avatar'
 import { Progress } from '@/components/ui/progress'
 import { useAuth } from '@/components/providers'
 import { cn, formatXP } from '@/lib/utils'
+import { UpgradeSuccessModal } from '@/components/billing/upgrade-success-modal'
 
 // Demo data
 const userStats = {
@@ -62,7 +63,19 @@ const recentActivity = [
 
 export default function ProfilePage() {
   const router = useRouter()
-  const { user, logout } = useAuth()
+  const searchParams = useSearchParams()
+  const { user, logout, refresh } = useAuth()
+  const [showUpgradeThanks, setShowUpgradeThanks] = useState(false)
+
+  const upgraded = searchParams.get('upgraded') === 'true'
+
+  useEffect(() => {
+    if (!upgraded) return
+    setShowUpgradeThanks(true)
+    refresh()
+    const t = setTimeout(() => refresh(), 1500)
+    return () => clearTimeout(t)
+  }, [upgraded, refresh])
 
   const handleLogout = async () => {
     await logout()
@@ -76,6 +89,22 @@ export default function ProfilePage() {
       <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-brand-900/10 via-dark-950 to-dark-950 pointer-events-none" />
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 py-8">
+        <UpgradeSuccessModal
+          open={showUpgradeThanks}
+          onClose={() => {
+            setShowUpgradeThanks(false)
+            refresh()
+            router.replace('/profile')
+          }}
+          onComplete={() => {
+            setShowUpgradeThanks(false)
+            refresh()
+            router.replace('/profile')
+          }}
+          completeLabel="Ir a mi perfil"
+          description="Tu plan Pro fue activado. Ya puedes disfrutar de vidas infinitas y todas las lecciones desbloqueadas."
+        />
+
         {/* Profile Header */}
         <Card className="bg-gradient-to-r from-dark-800 to-dark-900 border-dark-700 mb-8 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-brand-500/5 to-accent-purple/5" />
@@ -105,13 +134,24 @@ export default function ProfilePage() {
                 </div>
               </div>
               <div className="flex gap-2">
-                <Button variant="outline" size="icon" className="border-dark-600">
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className={cn(
+                    'border-dark-600 rounded-2xl border-2 border-b-4 transition-all duration-150 ease-out',
+                    'active:translate-y-0.5 active:border-b-2 hover:border-dark-500'
+                  )}
+                >
                   <Settings className="w-5 h-5" />
                 </Button>
                 <Button
                   variant="outline"
                   size="icon"
-                  className="border-dark-600 text-red-400 hover:text-red-300 hover:border-red-500/50"
+                  className={cn(
+                    'border-dark-600 text-red-400 hover:text-red-300 hover:border-red-500/50',
+                    'rounded-2xl border-2 border-b-4 transition-all duration-150 ease-out',
+                    'active:translate-y-0.5 active:border-b-2'
+                  )}
                   onClick={handleLogout}
                 >
                   <LogOut className="w-5 h-5" />
@@ -202,7 +242,7 @@ export default function ProfilePage() {
                   {recentActivity.map((activity, index) => (
                     <div
                       key={index}
-                      className="flex items-center gap-3 p-3 rounded-lg bg-dark-700/50"
+                      className="flex items-center gap-3 p-3 rounded-2xl border border-dark-700 bg-dark-800/60"
                     >
                       <div className={cn(
                         'w-10 h-10 rounded-lg flex items-center justify-center',

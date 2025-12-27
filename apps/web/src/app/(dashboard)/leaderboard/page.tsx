@@ -47,7 +47,7 @@ export default function LeaderboardPage() {
 
   return (
     <div className="min-h-screen bg-dark-950 pb-24 md:pb-8">
-      <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-accent-gold/5 via-dark-950 to-dark-950 pointer-events-none" />
+      <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-brand-900/10 via-dark-950 to-dark-950 pointer-events-none" />
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 py-8">
         <div className="mb-8">

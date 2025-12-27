@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { PRO_PLAN_BENEFITS } from '@/lib/billing/pro-benefits'
+import { StartProButton } from '@/components/billing/start-pro-button'
 import {
   GraduationCap,
   Trophy,
@@ -227,11 +228,7 @@ export default function LandingPage() {
                   </li>
                 ))}
               </ul>
-              <Link href="/register?plan=pro">
-                <Button variant="premium" className="w-full">
-                  Comenzar con Pro
-                </Button>
-              </Link>
+              <StartProButton className="w-full" />
             </div>
           </div>
         </div>

@@ -45,7 +45,8 @@ export default function AdminPage() {
   if (isLoading || user?.role !== 'ADMIN') {
     return (
       <div className="min-h-screen bg-dark-950 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-brand-500"></div>
+        <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-brand-900/10 via-dark-950 to-dark-950 pointer-events-none" />
+        <div className="relative z-10 animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-brand-500"></div>
       </div>
     )
   }
@@ -95,7 +96,9 @@ export default function AdminPage() {
 
   return (
     <div className="min-h-screen bg-dark-950 pb-24 md:pb-8">
-      <div className="max-w-6xl mx-auto px-4 py-8">
+      <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-brand-900/10 via-dark-950 to-dark-950 pointer-events-none" />
+
+      <div className="relative z-10 max-w-6xl mx-auto px-4 py-8">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-white mb-2">Panel de Administración</h1>
           <p className="text-gray-400">Gestiona el contenido educativo de Progressia</p>
@@ -109,7 +112,7 @@ export default function AdminPage() {
             { label: 'Lecciones', value: stats.lessons, icon: FileText },
             { label: 'Preguntas', value: stats.questions, icon: HelpCircle },
           ].map((stat, i) => (
-            <Card key={i} className="bg-dark-800 border-dark-700">
+            <Card key={i} className="bg-dark-800 border-dark-700 hover:border-dark-600 transition-colors">
               <CardContent className="p-4">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-lg bg-brand-500/20 flex items-center justify-center">

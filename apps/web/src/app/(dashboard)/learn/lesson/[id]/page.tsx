@@ -1,7 +1,7 @@
 'use client'
 
 import { useMemo, useState, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   X,
@@ -19,6 +19,7 @@ import { useAuth } from '@/components/providers'
 import { getBeginnerLessonById } from '@/lib/learn/beginner-level'
 import { markBeginnerLessonCompleted } from '@/lib/learn/progress-storage'
 import { PRO_PLAN_BENEFITS } from '@/lib/billing/pro-benefits'
+import { UpgradeSuccessModal } from '@/components/billing/upgrade-success-modal'
 
 const MAX_LIVES = 3
 
@@ -35,6 +36,12 @@ const ERROR_MESSAGES = [
   { text: '¡Casi! 😅', subtitle: 'Perdiste una vida' },
   { text: 'No exactamente 🤔', subtitle: '-1 vida' },
   { text: 'Ups... 💭', subtitle: 'Vida perdida' },
+]
+
+const PRO_ERROR_MESSAGES: typeof SUCCESS_MESSAGES = [
+  { text: '¡Casi! 😅', subtitle: 'Sin penalización por ser PRO' },
+  { text: 'No exactamente 🤔', subtitle: 'Sigue intentando' },
+  { text: 'Ups... 💭', subtitle: 'No pasa nada, tienes vidas infinitas' },
 ]
 
 const FINAL_SUCCESS_MESSAGES = [
@@ -79,7 +86,25 @@ function Confetti() {
 }
 
 // Hearts display component
-function LivesDisplay({ lives, maxLives }: { lives: number; maxLives: number }) {
+function LivesDisplay({
+  lives,
+  maxLives,
+  isPro,
+}: {
+  lives: number
+  maxLives: number
+  isPro?: boolean
+}) {
+  if (isPro) {
+    return (
+      <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-accent-purple/20 to-brand-500/20 border border-accent-purple/30">
+        <Crown className="w-4 h-4 text-accent-purple" />
+        <span className="text-sm font-bold text-white">Vidas infinitas</span>
+        <span className="text-sm font-black text-accent-purple">∞</span>
+      </div>
+    )
+  }
+
   return (
     <div className="flex items-center gap-1">
       {Array.from({ length: maxLives }).map((_, i) => (
@@ -107,7 +132,8 @@ type Phase = 'content' | 'quiz' | 'results' | 'gameOver'
 
 export default function LessonPage({ params }: { params: { id: string } }) {
   const router = useRouter()
-  const { user } = useAuth()
+  const searchParams = useSearchParams()
+  const { user, refresh } = useAuth()
   const [phase, setPhase] = useState<Phase>('content')
   const [lives, setLives] = useState(MAX_LIVES)
   const [currentQuestion, setCurrentQuestion] = useState(0)
@@ -117,6 +143,7 @@ export default function LessonPage({ params }: { params: { id: string } }) {
   const [showConfetti, setShowConfetti] = useState(false)
   const [isProModalOpen, setIsProModalOpen] = useState(false)
   const [isSubscribing, setIsSubscribing] = useState(false)
+  const [showUpgradeThanks, setShowUpgradeThanks] = useState(false)
   const [results, setResults] = useState<{
     correct: number
     total: number
@@ -125,6 +152,8 @@ export default function LessonPage({ params }: { params: { id: string } }) {
   } | null>(null)
 
   const lesson = useMemo(() => getBeginnerLessonById(params.id), [params.id])
+  const isPro = !!user?.isPro
+  const upgraded = searchParams.get('upgraded') === 'true'
 
   // Reset confetti after animation
   useEffect(() => {
@@ -133,6 +162,26 @@ export default function LessonPage({ params }: { params: { id: string } }) {
       return () => clearTimeout(timer)
     }
   }, [showConfetti])
+
+  // PRO: vidas infinitas y evita quedarse en gameOver por estados anteriores
+  useEffect(() => {
+    if (!isPro) return
+    if (lives !== MAX_LIVES) setLives(MAX_LIVES)
+    if (phase === 'gameOver') setPhase('quiz')
+  }, [isPro, lives, phase])
+
+  // Mostrar agradecimiento al volver del checkout
+  useEffect(() => {
+    if (!upgraded) return
+    // Para evitar doble-render del modal (content->quiz), llevamos al usuario a quiz
+    // y mostramos el modal una sola vez allí.
+    setPhase('quiz')
+    setLives(MAX_LIVES)
+    setShowUpgradeThanks(true)
+    refresh()
+    const t = setTimeout(() => refresh(), 1500)
+    return () => clearTimeout(t)
+  }, [upgraded, refresh])
 
   if (!lesson) {
     return (
@@ -159,11 +208,15 @@ export default function LessonPage({ params }: { params: { id: string } }) {
   const handleAnswer = (answerIndex: number) => {
     const isCorrectAnswer = answerIndex === question.correctAnswer
     setAnswers({ ...answers, [question.id]: answerIndex })
-    setFeedbackMessage(getRandomMessage(isCorrectAnswer ? SUCCESS_MESSAGES : ERROR_MESSAGES))
+    setFeedbackMessage(
+      getRandomMessage(
+        isCorrectAnswer ? SUCCESS_MESSAGES : isPro ? PRO_ERROR_MESSAGES : ERROR_MESSAGES
+      )
+    )
     setShowFeedback(true)
 
     // Si es incorrecta, restar una vida
-    if (!isCorrectAnswer) {
+    if (!isCorrectAnswer && !isPro) {
       const newLives = lives - 1
       setLives(newLives)
 
@@ -180,7 +233,7 @@ export default function LessonPage({ params }: { params: { id: string } }) {
 
   const nextQuestion = () => {
     // Si no tiene vidas, no continuar (ya se manejó en handleAnswer)
-    if (lives <= 0) return
+    if (!isPro && lives <= 0) return
 
     setShowFeedback(false)
     setFeedbackMessage(null)
@@ -355,7 +408,7 @@ export default function LessonPage({ params }: { params: { id: string } }) {
               />
 
               {/* Modal */}
-              <div className="absolute inset-0 flex items-center justify-center px-4 py-6">
+              <div className="absolute inset-0 flex items-center justify-center px-4 py-4">
                 <motion.div
                   initial={{ y: 20, scale: 0.98, opacity: 0 }}
                   animate={{ y: 0, scale: 1, opacity: 1 }}
@@ -363,7 +416,7 @@ export default function LessonPage({ params }: { params: { id: string } }) {
                   transition={{ type: 'spring', duration: 0.45 }}
                   className="w-full max-w-lg"
                 >
-                  <div className="bg-gradient-to-br from-brand-500/20 to-accent-purple/20 border-2 border-brand-500/30 rounded-3xl p-6 sm:p-7 text-left shadow-[0_0_80px_rgba(168,85,247,0.15)]">
+                  <div className="bg-gradient-to-br from-brand-500/20 to-accent-purple/20 border-2 border-brand-500/30 rounded-3xl p-6 sm:p-7 text-left shadow-[0_0_80px_rgba(168,85,247,0.15)] max-h-[calc(100dvh-2rem)] overflow-hidden flex flex-col">
                     <div className="flex items-start justify-between gap-4">
                       <div>
                         <div className="inline-flex items-center gap-2 text-brand-300 font-semibold">
@@ -388,7 +441,8 @@ export default function LessonPage({ params }: { params: { id: string } }) {
                       Suscríbete a Pro para desbloquear todo el contenido y seguir avanzando sin interrupciones.
                     </p>
 
-                    <div className="mt-5">
+                    {/* Scroll area (mantener botones visibles dentro de 100dvh) */}
+                    <div className="mt-5 flex-1 min-h-0 overflow-auto pr-1">
                       <div className="text-sm font-semibold text-brand-300 mb-3">
                         Beneficios de Pro
                       </div>
@@ -404,7 +458,7 @@ export default function LessonPage({ params }: { params: { id: string } }) {
                       </ul>
                     </div>
 
-                    <div className="mt-6 space-y-3">
+                    <div className="mt-6 space-y-3 flex-shrink-0">
                       <button
                         onClick={handleSubscribePro}
                         disabled={isSubscribing}
@@ -428,7 +482,7 @@ export default function LessonPage({ params }: { params: { id: string } }) {
                       </button>
                     </div>
 
-                    <p className="text-xs text-gray-400 mt-4">
+                    <p className="text-xs text-gray-400 mt-4 flex-shrink-0">
                       Al suscribirte, serás redirigido a un checkout seguro. Puedes cancelar cuando quieras.
                     </p>
                   </div>
@@ -457,8 +511,7 @@ export default function LessonPage({ params }: { params: { id: string } }) {
             </button>
 
             <div className="flex items-center gap-3">
-              <p>Vidas: </p>
-              <LivesDisplay lives={lives} maxLives={MAX_LIVES} />
+              <LivesDisplay lives={lives} maxLives={MAX_LIVES} isPro={isPro} />
             </div>
 
             <div className="w-20" /> {/* Spacer for centering */}
@@ -519,6 +572,24 @@ export default function LessonPage({ params }: { params: { id: string } }) {
   if (phase === 'quiz') {
     return (
       <div className="h-[100dvh] bg-dark-950 flex flex-col overflow-hidden">
+        <UpgradeSuccessModal
+          open={showUpgradeThanks}
+          onClose={() => {
+            setShowUpgradeThanks(false)
+            setPhase('quiz')
+            setLives(MAX_LIVES)
+            router.replace(`/learn/lesson/${params.id}`)
+          }}
+          onComplete={() => {
+            setShowUpgradeThanks(false)
+            setPhase('quiz')
+            setLives(MAX_LIVES)
+            router.replace(`/learn/lesson/${params.id}`)
+          }}
+          completeLabel="Continuar la lección"
+          description="¡Bienvenido a Pro! Vidas infinitas activadas para que puedas continuar sin interrupciones."
+        />
+
         {/* Header */}
         <header className="bg-dark-900 border-b-2 border-dark-700 flex-shrink-0">
           <div className="max-w-2xl mx-auto px-4 py-4">
@@ -542,7 +613,7 @@ export default function LessonPage({ params }: { params: { id: string } }) {
                 </div>
               </div>
 
-              <LivesDisplay lives={lives} maxLives={MAX_LIVES} />
+              <LivesDisplay lives={lives} maxLives={MAX_LIVES} isPro={isPro} />
             </div>
           </div>
         </header>
@@ -658,7 +729,11 @@ export default function LessonPage({ params }: { params: { id: string } }) {
                         {feedbackMessage?.text}
                       </div>
                       <div className="text-sm text-gray-400">
-                        {isCorrect() ? feedbackMessage?.subtitle : `${lives} ${lives === 1 ? 'vida restante' : 'vidas restantes'}`}
+                        {isCorrect()
+                          ? feedbackMessage?.subtitle
+                          : isPro
+                            ? '∞ vidas restantes (PRO)'
+                            : `${lives} ${lives === 1 ? 'vida restante' : 'vidas restantes'}`}
                       </div>
                     </div>
                   </div>
@@ -683,7 +758,7 @@ export default function LessonPage({ params }: { params: { id: string } }) {
                 )}
 
                 {/* Solo mostrar botón si aún tiene vidas */}
-                {lives > 0 && (
+                {(isPro || lives > 0) && (
                   <button
                     onClick={nextQuestion}
                     className={cn(
