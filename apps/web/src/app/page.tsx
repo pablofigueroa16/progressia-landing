@@ -104,6 +104,427 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Manifesto / Narrative Section */}
+      <section className="relative z-10 py-24 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold font-display mb-4">
+              Aprende a dominar el dinero.
+              <br />
+              <span className="bg-gradient-to-r from-brand-400 via-brand-500 to-accent-purple bg-clip-text text-transparent">
+                Progreso real, todos los días.
+              </span>
+            </h2>
+            <p className="text-gray-400 max-w-3xl mx-auto">
+              Progressia es la primera plataforma de educación financiera y trading gamificada,
+              diseñada para que cualquier persona —desde cero— pueda aprender, practicar y
+              progresar de forma constante, clara y medible.
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-3 gap-6 mb-12">
+            <div className="p-6 rounded-2xl bg-white/5 border border-white/10">
+              <div className="flex items-center gap-3 mb-3">
+                <GraduationCap className="w-6 h-6 text-brand-400" />
+                <h3 className="text-xl font-semibold">No es teoría aburrida.</h3>
+              </div>
+              <p className="text-gray-400">
+                Aprendes con micro-lecciones y práctica real, no con textos interminables.
+              </p>
+            </div>
+            <div className="p-6 rounded-2xl bg-white/5 border border-white/10">
+              <div className="flex items-center gap-3 mb-3">
+                <Shield className="w-6 h-6 text-yellow-400" />
+                <h3 className="text-xl font-semibold">No es promesas vacías.</h3>
+              </div>
+              <p className="text-gray-400">
+                No vendemos humo ni rentabilidad. Formamos criterio y disciplina.
+              </p>
+            </div>
+            <div className="p-6 rounded-2xl bg-white/5 border border-white/10">
+              <div className="flex items-center gap-3 mb-3">
+                <Flame className="w-6 h-6 text-accent-orange" />
+                <h3 className="text-xl font-semibold">Es progreso diario, estructurado y comprobable.</h3>
+              </div>
+              <p className="text-gray-400">
+                Avanzas con métricas claras: racha, XP, misiones completadas y niveles.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-8 mb-12">
+            <div className="p-8 rounded-2xl bg-gradient-to-br from-dark-900/60 to-dark-900/20 border border-white/10">
+              <div className="flex items-center gap-3 mb-4">
+                <Target className="w-6 h-6 text-brand-400" />
+                <h3 className="text-2xl font-bold">🚀 El problema real</h3>
+              </div>
+              <p className="text-gray-400 mb-4">Hoy millones de personas:</p>
+              <ul className="space-y-2 text-gray-300">
+                <li className="flex gap-3">
+                  <span className="text-brand-400 font-black">●</span>
+                  No entienden cómo funciona el dinero
+                </li>
+                <li className="flex gap-3">
+                  <span className="text-brand-400 font-black">●</span>
+                  Pierden capital por falta de educación financiera
+                </li>
+                <li className="flex gap-3">
+                  <span className="text-brand-400 font-black">●</span>
+                  Se frustran con cursos largos, técnicos o confusos
+                </li>
+                <li className="flex gap-3">
+                  <span className="text-brand-400 font-black">●</span>
+                  Abandonan porque no ven resultados claros
+                </li>
+              </ul>
+              <p className="text-gray-400 mt-4">
+                La educación financiera tradicional no está diseñada para aprender, sino para informar.
+              </p>
+            </div>
+
+            <div className="p-8 rounded-2xl bg-gradient-to-br from-brand-500/15 to-accent-purple/10 border border-brand-500/20">
+              <div className="flex items-center gap-3 mb-4">
+                <Zap className="w-6 h-6 text-accent-purple" />
+                <h3 className="text-2xl font-bold">✅ La solución: Progressia</h3>
+              </div>
+              <p className="text-gray-400 mb-4">
+                Progressia transforma la educación financiera en una experiencia diaria, simple y adictiva, usando:
+              </p>
+              <ul className="space-y-2 text-gray-300">
+                {[
+                  'Micro-lecciones',
+                  'Retos diarios',
+                  'Gamificación inteligente',
+                  'Repetición estratégica',
+                  'Progreso visible',
+                ].map((item) => (
+                  <li key={item} className="flex gap-3">
+                    <span className="text-accent-purple font-black">●</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <p className="text-gray-300 mt-4 font-medium">
+                Aprendes como en un juego, pero con impacto real en tu vida financiera.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-8 mb-12">
+            <div className="p-8 rounded-2xl bg-white/5 border border-white/10">
+              <div className="flex items-center gap-3 mb-4">
+                <GraduationCap className="w-6 h-6 text-brand-400" />
+                <h3 className="text-2xl font-bold">🎯 ¿Qué es Progressia?</h3>
+              </div>
+              <p className="text-gray-400 mb-4">Una app educativa donde aprendes:</p>
+              <ul className="grid sm:grid-cols-2 gap-2 text-gray-300">
+                {[
+                  'Educación financiera desde cero',
+                  'Conceptos clave de trading e inversión',
+                  'Psicología financiera',
+                  'Gestión del riesgo',
+                  'Lectura del mercado',
+                  'Toma de decisiones racionales',
+                ].map((item) => (
+                  <li key={item} className="flex gap-3">
+                    <span className="text-brand-400 font-black">●</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <p className="text-gray-400 mt-4">
+                Todo dividido en niveles, misiones y retos diarios.
+              </p>
+            </div>
+
+            <div className="p-8 rounded-2xl bg-white/5 border border-white/10">
+              <div className="flex items-center gap-3 mb-4">
+                <Flame className="w-6 h-6 text-accent-orange" />
+                <h3 className="text-2xl font-bold">🧠 Método Progressia</h3>
+              </div>
+              <p className="text-gray-400 mb-4">
+                Aprender no es acumular información. <span className="text-white font-semibold">Aprender es progresar.</span>
+              </p>
+              <div className="grid sm:grid-cols-2 gap-3 text-gray-300">
+                {[
+                  'Aprendizaje incremental (paso a paso)',
+                  'Repetición inteligente',
+                  'Evaluación constante',
+                  'Refuerzo positivo',
+                  'Competencia sana',
+                ].map((item) => (
+                  <div key={item} className="flex gap-3">
+                    <span className="text-accent-orange font-black">●</span>
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-6 p-4 rounded-xl bg-white/5 border border-white/10">
+                <p className="text-gray-300">
+                  Cada día avanzas un poco. Cada semana eres mejor. Cada mes sabes más que el 90% de las personas.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="mb-12">
+            <div className="text-center mb-10">
+              <h3 className="text-2xl sm:text-3xl font-bold font-display">🧩 Niveles de aprendizaje</h3>
+              <p className="text-gray-400 mt-2">Una ruta clara, estructurada y medible.</p>
+            </div>
+
+            <div className="grid lg:grid-cols-3 gap-6">
+              <div className="p-7 rounded-2xl bg-gradient-to-br from-green-500/15 to-dark-900/30 border border-green-500/20">
+                <div className="text-green-400 font-black mb-2">🟢 Nivel 1 — Estudiante</div>
+                <ul className="space-y-2 text-gray-300">
+                  {[
+                    'Fundamentos del dinero',
+                    'Conceptos financieros básicos',
+                    'Introducción al trading',
+                    'Vocabulario esencial',
+                    'Hábitos financieros saludables',
+                  ].map((item) => (
+                    <li key={item} className="flex gap-3">
+                      <span className="text-green-400 font-black">●</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="p-7 rounded-2xl bg-gradient-to-br from-blue-500/15 to-dark-900/30 border border-blue-500/20">
+                <div className="text-blue-400 font-black mb-2">🔵 Nivel 2 — Discípulo</div>
+                <ul className="space-y-2 text-gray-300">
+                  {[
+                    'Análisis de mercado',
+                    'Gestión de riesgo',
+                    'Psicología del trader',
+                    'Estrategias básicas',
+                    'Disciplina y consistencia',
+                  ].map((item) => (
+                    <li key={item} className="flex gap-3">
+                      <span className="text-blue-400 font-black">●</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="p-7 rounded-2xl bg-gradient-to-br from-red-500/15 to-dark-900/30 border border-red-500/20">
+                <div className="text-red-400 font-black mb-2">🔴 Nivel 3 — Maestro</div>
+                <ul className="space-y-2 text-gray-300">
+                  {[
+                    'Pensamiento estratégico',
+                    'Toma de decisiones avanzadas',
+                    'Gestión emocional',
+                    'Mentalidad profesional',
+                    'Visión a largo plazo',
+                  ].map((item) => (
+                    <li key={item} className="flex gap-3">
+                      <span className="text-red-400 font-black">●</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-8 mb-12">
+            <div className="p-8 rounded-2xl bg-white/5 border border-white/10">
+              <div className="flex items-center gap-3 mb-4">
+                <Trophy className="w-6 h-6 text-accent-gold" />
+                <h3 className="text-2xl font-bold">🕹️ Gamificación que funciona</h3>
+              </div>
+              <ul className="space-y-2 text-gray-300">
+                {[
+                  'Ganas puntos por aprender',
+                  'Desbloqueas niveles',
+                  'Mantienes rachas diarias',
+                  'Compites en rankings',
+                  'Superas retos diarios',
+                ].map((item) => (
+                  <li key={item} className="flex gap-3">
+                    <span className="text-accent-gold font-black">●</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <p className="text-gray-300 mt-4 font-semibold">
+                Porque la constancia vence al talento.
+              </p>
+            </div>
+
+            <div className="p-8 rounded-2xl bg-white/5 border border-white/10">
+              <div className="flex items-center gap-3 mb-4">
+                <Users className="w-6 h-6 text-brand-400" />
+                <h3 className="text-2xl font-bold">🏆 Rankings & comunidad</h3>
+              </div>
+              <ul className="space-y-2 text-gray-300">
+                {[
+                  'Ranking global',
+                  'Ranking por país',
+                  'Ranking entre amigos',
+                  'Retos individuales y grupales',
+                ].map((item) => (
+                  <li key={item} className="flex gap-3">
+                    <span className="text-brand-400 font-black">●</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <p className="text-gray-400 mt-4">
+                Aprendes mejor cuando no estás solo.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-8 mb-12">
+            <div className="p-8 rounded-2xl bg-white/5 border border-white/10">
+              <div className="flex items-center gap-3 mb-4">
+                <Zap className="w-6 h-6 text-accent-purple" />
+                <h3 className="text-2xl font-bold">🎧 Contenido multimedia</h3>
+              </div>
+              <ul className="space-y-2 text-gray-300">
+                {[
+                  'Lecciones cortas',
+                  'Audio-learning',
+                  'Podcast educativo',
+                  'Retos diarios guiados',
+                  'Preguntas tipo Duolingo',
+                ].map((item) => (
+                  <li key={item} className="flex gap-3">
+                    <span className="text-accent-purple font-black">●</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <p className="text-gray-400 mt-4">
+                Aprende cuando quieras y donde quieras.
+              </p>
+            </div>
+
+            <div className="p-8 rounded-2xl bg-white/5 border border-white/10">
+              <div className="flex items-center gap-3 mb-4">
+                <Shield className="w-6 h-6 text-yellow-400" />
+                <h3 className="text-2xl font-bold">🔐 Educación con responsabilidad</h3>
+              </div>
+              <ul className="space-y-2 text-gray-300">
+                {[
+                  'No promete rentabilidad',
+                  'No vende humo',
+                  'No incentiva el riesgo irresponsable',
+                ].map((item) => (
+                  <li key={item} className="flex gap-3">
+                    <span className="text-yellow-400 font-black">●</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <p className="text-gray-400 mt-4">
+                Formamos personas educadas financieramente, no apostadores.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-8 mb-12">
+            <div className="p-8 rounded-2xl bg-white/5 border border-white/10">
+              <div className="flex items-center gap-3 mb-4">
+                <Users className="w-6 h-6 text-brand-400" />
+                <h3 className="text-2xl font-bold">👤 ¿Para quién es Progressia?</h3>
+              </div>
+              <ul className="space-y-2 text-gray-300">
+                {[
+                  'Principiantes en finanzas',
+                  'Personas que quieren entender el dinero',
+                  'Traders en formación',
+                  'Inversores a largo plazo',
+                  'Jóvenes, adultos y profesionales',
+                ].map((item) => (
+                  <li key={item} className="flex gap-3">
+                    <span className="text-brand-400 font-black">●</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <p className="text-gray-300 mt-4 font-medium">
+                Si quieres progresar, Progressia es para ti.
+              </p>
+            </div>
+
+            <div className="p-8 rounded-2xl bg-white/5 border border-white/10">
+              <div className="flex items-center gap-3 mb-4">
+                <Star className="w-6 h-6 text-accent-gold" />
+                <h3 className="text-2xl font-bold">📈 Resultados reales</h3>
+              </div>
+              <ul className="space-y-2 text-gray-300">
+                {[
+                  'Más claridad financiera',
+                  'Mejores decisiones',
+                  'Menos errores costosos',
+                  'Mayor disciplina',
+                  'Mentalidad de largo plazo',
+                ].map((item) => (
+                  <li key={item} className="flex gap-3">
+                    <span className="text-accent-gold font-black">●</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-4 p-4 rounded-xl bg-white/5 border border-white/10">
+                <p className="text-gray-300">
+                  No se trata de ganar rápido.{' '}
+                  <span className="text-white font-semibold">Se trata de no perder por ignorancia.</span>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="p-8 rounded-2xl bg-gradient-to-r from-brand-500/15 to-accent-purple/10 border border-brand-500/20">
+            <div className="grid lg:grid-cols-3 gap-8 items-start">
+              <div className="lg:col-span-2">
+                <h3 className="text-2xl font-bold mb-3">🌍 Nuestra visión</h3>
+                <p className="text-gray-300 mb-4">
+                  Creemos que la educación financiera debería ser tan básica como aprender a leer.
+                  Progressia nace para democratizar el conocimiento financiero, formar generaciones más
+                  conscientes y construir una relación sana con el dinero.
+                </p>
+                <div className="p-5 rounded-2xl bg-black/20 border border-white/10">
+                  <p className="text-lg sm:text-xl text-white font-semibold italic">
+                    “No se trata de saber más, sino de progresar cada día.”
+                  </p>
+                </div>
+              </div>
+
+              <div>
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-4">
+                  <Flame className="w-4 h-4 text-accent-orange" />
+                  <span className="text-sm text-gray-300 font-medium">El progreso no es un evento. Es un hábito.</span>
+                </div>
+                <h4 className="text-xl font-bold mb-3">📲 Empieza hoy. Progresa siempre.</h4>
+                <div className="space-y-3">
+                  <Link href="/register">
+                    <Button size="lg" className="w-full">
+                      Crea tu cuenta gratuita
+                      <ChevronRight className="ml-2 w-5 h-5" />
+                    </Button>
+                  </Link>
+                  <Link href="/learn">
+                    <Button size="lg" variant="outline" className="w-full border-white/20 text-white hover:bg-white/10">
+                      Completa tu primera lección
+                    </Button>
+                  </Link>
+                  <StartProButton className="w-full" />
+                </div>
+                <p className="text-xs text-gray-400 mt-4">
+                  “Descarga Progressia” (próximamente). Por ahora puedes usar la versión web.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Features Section */}
       <section id="features" className="relative z-10 py-24 px-4">
         <div className="max-w-7xl mx-auto">
