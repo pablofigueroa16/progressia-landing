@@ -39,21 +39,38 @@ export function useTheme() {
 export function Providers({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<UserSession | null>(null)
   const [isLoading, setIsLoading] = useState(true)
-  const [theme, setTheme] = useState<'light' | 'dark'>('dark')
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    if (typeof window === 'undefined') return 'dark'
+    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null
+    if (savedTheme) return savedTheme
+    return window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+  })
 
   useEffect(() => {
     // Check for saved theme preference
     const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null
-    if (savedTheme) {
-      setTheme(savedTheme)
-      document.documentElement.classList.toggle('dark', savedTheme === 'dark')
-    } else {
-      // Default to dark theme
-      document.documentElement.classList.add('dark')
+    const media = window.matchMedia?.('(prefers-color-scheme: dark)')
+    const systemTheme: 'light' | 'dark' = media?.matches ? 'dark' : 'light'
+    const initialTheme = savedTheme ?? systemTheme
+
+    setTheme(initialTheme)
+    document.documentElement.classList.toggle('dark', initialTheme === 'dark')
+
+    // If user hasn't explicitly chosen a theme, follow system changes
+    let cleanup: (() => void) | undefined
+    if (!savedTheme && media) {
+      const onChange = (e: MediaQueryListEvent) => {
+        const nextTheme: 'light' | 'dark' = e.matches ? 'dark' : 'light'
+        setTheme(nextTheme)
+        document.documentElement.classList.toggle('dark', nextTheme === 'dark')
+      }
+      media.addEventListener('change', onChange)
+      cleanup = () => media.removeEventListener('change', onChange)
     }
     
     // Check auth status
     refresh()
+    return cleanup
   }, [])
 
   const toggleTheme = () => {
