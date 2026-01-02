@@ -460,7 +460,7 @@ export default function LandingPage() {
               </FadeIn>
 
               {/* Pro Plan */}
-              <FadeIn className="relative p-8 rounded-2xl bg-white/80 border border-slate-200/80 shadow-sm dark:bg-gradient-to-br dark:from-brand-500/20 dark:to-accent-purple/20 dark:border-brand-500/30 dark:shadow-none">
+              <FadeIn className="relative p-8 rounded-2xl bg-white/80 border border-slate-200/80 shadow-sm dark:bg-dark-950 dark:bg-gradient-to-br dark:from-brand-500/12 dark:via-dark-950 dark:to-accent-purple/10 dark:border-brand-500/30 dark:shadow-none">
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-brand-500 to-accent-purple rounded-full text-sm font-medium text-white shadow-sm dark:shadow-none">
                   Más Popular
                 </div>
