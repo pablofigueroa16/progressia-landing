@@ -5,7 +5,6 @@ import { Button } from '@/components/ui/button'
 import { StartProButton } from '@/components/billing/start-pro-button'
 import { FadeIn, FadeInLi, FadeInSection, FadeInStagger, Stagger, StaggerList } from '@/components/motion/fade-in'
 import {
-  Zap,
   Shield,
   Star,
   ChevronRight,
@@ -112,7 +111,7 @@ export default function LandingPage() {
       <FadeInSection className="relative z-10 py-24 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            <Stagger className="text-center lg:text-left">
+            <Stagger className="text-center lg:text-left lg:order-2">
               <FadeIn>
                 <h2 className="text-3xl sm:text-5xl font-bold font-display mb-4">
                   <span className={SECTION_TITLE_COLOR}>Aprender no tiene por qué ser complicado</span>
@@ -131,7 +130,7 @@ export default function LandingPage() {
               </FadeIn>
             </Stagger>
 
-            <FadeIn className="relative mx-auto w-full max-w-xl lg:max-w-none">
+            <FadeIn className="relative mx-auto w-full max-w-xl lg:max-w-none lg:order-1">
               <Image
                 src="/seccion1.png"
                 alt="Aprendizaje claro y progresivo con Progressia"
@@ -148,27 +147,37 @@ export default function LandingPage() {
       {/* How it works Section */}
       <FadeInSection id="features" className="relative z-10 py-24 px-4">
         <div className="max-w-7xl mx-auto">
-          <Stagger className="text-center">
-            <FadeIn>
-              <h2 className="text-3xl sm:text-5xl font-bold font-display mb-4">
-                <span className={SECTION_TITLE_COLOR}>Aprende en pocos minutos al día</span>
-              </h2>
-            </FadeIn>
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <Stagger className="text-center lg:text-left">
+              <FadeIn>
+                <h2 className="text-3xl sm:text-5xl font-bold font-display mb-4">
+                  <span className={SECTION_TITLE_COLOR}>Aprende en pocos minutos al día</span>
+                </h2>
+              </FadeIn>
 
-            <FadeIn className="mt-12 max-w-4xl mx-auto">
-              <div className="p-8 sm:p-10 rounded-2xl bg-white/80 border border-slate-200/80 shadow-sm dark:bg-white/5 dark:border-white/10 dark:shadow-none">
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-4">
-                  <Zap className="w-6 h-6 text-green-300" />
-                  <p className="text-lg sm:text-xl text-slate-900 dark:text-white font-semibold text-center sm:text-left">
-                    Con lecciones cortas y ejercicios simples, Progressia te guía paso a paso.
-                  </p>
-                </div>
-                <p className="text-slate-700 dark:text-gray-300 text-base sm:text-lg">
+              <FadeIn>
+                <p className="text-slate-600 dark:text-gray-400 max-w-2xl mx-auto lg:mx-0">
+                  Con lecciones cortas y ejercicios simples, Progressia te guía paso a paso.
+                </p>
+              </FadeIn>
+              <FadeIn>
+                <p className="text-slate-700 dark:text-gray-300 mt-4 max-w-2xl mx-auto lg:mx-0">
                   Aprendes algo nuevo cada día y refuerzas lo aprendido sin saturarte.
                 </p>
-              </div>
+              </FadeIn>
+            </Stagger>
+
+            <FadeIn className="relative mx-auto w-full max-w-xl lg:max-w-none">
+              <Image
+                src="/seccion2.png"
+                alt="Aprendizaje en pocos minutos al día con Progressia"
+                width={1200}
+                height={900}
+                className="h-auto w-full rounded-2xl"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
             </FadeIn>
-          </Stagger>
+          </div>
         </div>
       </FadeInSection>
 
@@ -205,7 +214,7 @@ export default function LandingPage() {
       <FadeInSection className="relative z-10 py-24 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            <Stagger className="text-center lg:text-left">
+            <Stagger className="text-center lg:text-left lg:order-2">
               <FadeIn>
                 <h2 className="text-3xl sm:text-5xl font-bold font-display mb-4">
                   <span className={SECTION_TITLE_COLOR}>La constancia es la verdadera ventaja</span>
@@ -224,7 +233,7 @@ export default function LandingPage() {
               </FadeIn>
             </Stagger>
 
-            <FadeIn className="relative mx-auto w-full max-w-xl lg:max-w-none">
+            <FadeIn className="relative mx-auto w-full max-w-xl lg:max-w-none lg:order-1">
               <Image
                 src="/seccion4.png"
                 alt="Motivación y constancia con Progressia"
@@ -311,7 +320,7 @@ export default function LandingPage() {
       <FadeInSection className="relative z-10 py-24 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            <Stagger className="text-center lg:text-left">
+            <Stagger className="text-center lg:text-left lg:order-2">
               <FadeIn>
                 <h2 className="text-3xl sm:text-5xl font-bold font-display mb-4">
                   <span className={SECTION_TITLE_COLOR}>Tu progreso siempre visible</span>
@@ -330,7 +339,7 @@ export default function LandingPage() {
               </FadeIn>
             </Stagger>
 
-            <FadeIn className="relative mx-auto w-full max-w-xl lg:max-w-none">
+            <FadeIn className="relative mx-auto w-full max-w-xl lg:max-w-none lg:order-1">
               <Image
                 src="/seccion7.png"
                 alt="Progreso visible con Progressia"
@@ -381,7 +390,7 @@ export default function LandingPage() {
       <FadeInSection className="relative z-10 py-24 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            <Stagger className="text-center lg:text-left">
+            <Stagger className="text-center lg:text-left lg:order-2">
               <FadeIn>
                 <h2 className="text-3xl sm:text-5xl font-bold font-display mb-4">
                   <span className={SECTION_TITLE_COLOR}>Aprender primero, decidir mejor</span>
@@ -400,7 +409,7 @@ export default function LandingPage() {
               </FadeIn>
             </Stagger>
 
-            <FadeIn className="relative mx-auto w-full max-w-xl lg:max-w-none">
+            <FadeIn className="relative mx-auto w-full max-w-xl lg:max-w-none lg:order-1">
               <Image
                 src="/seccion9.png"
                 alt="Educación responsable en Progressia"
