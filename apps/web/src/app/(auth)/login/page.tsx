@@ -55,7 +55,7 @@ export default function LoginPage() {
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center gap-2">
             <Image
-              src="/progressia.png"
+              src="/logo.png"
               alt="Progressia"
               width={200}
               height={80}

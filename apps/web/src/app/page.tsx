@@ -5,7 +5,6 @@ import { Button } from '@/components/ui/button'
 import { StartProButton } from '@/components/billing/start-pro-button'
 import { FadeIn, FadeInLi, FadeInSection, FadeInStagger, Stagger, StaggerList } from '@/components/motion/fade-in'
 import {
-  GraduationCap,
   Zap,
   Shield,
   Star,
@@ -27,11 +26,11 @@ export default function LandingPage() {
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-2">
               <Image
-                src="/progressia.png"
+                src="/logo.png"
                 alt="Progressia"
                 width={200}
                 height={80}
-                className="h-20 w-auto"
+                className="h-28 w-auto"
                 priority
               />
             </div>
@@ -112,27 +111,37 @@ export default function LandingPage() {
       {/* Value Proposition Section */}
       <FadeInSection className="relative z-10 py-24 px-4">
         <div className="max-w-7xl mx-auto">
-          <Stagger className="text-center">
-            <FadeIn>
-              <h2 className="text-3xl sm:text-5xl font-bold font-display mb-4">
-                <span className={SECTION_TITLE_COLOR}>Aprender no tiene por qué ser complicado</span>
-              </h2>
-            </FadeIn>
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <Stagger className="text-center lg:text-left">
+              <FadeIn>
+                <h2 className="text-3xl sm:text-5xl font-bold font-display mb-4">
+                  <span className={SECTION_TITLE_COLOR}>Aprender no tiene por qué ser complicado</span>
+                </h2>
+              </FadeIn>
 
-            <FadeIn className="mt-12 max-w-4xl mx-auto">
-              <div className="p-8 sm:p-10 rounded-2xl bg-white/80 border border-slate-200/80 shadow-sm dark:bg-white/5 dark:border-white/10 dark:shadow-none">
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-4">
-                  <GraduationCap className="w-6 h-6 text-green-300" />
-                  <p className="text-lg sm:text-xl text-slate-900 dark:text-white font-semibold text-center sm:text-left">
-                    Progressia convierte la educación financiera en una experiencia clara y progresiva.
-                  </p>
-                </div>
-                <p className="text-slate-700 dark:text-gray-300 text-base sm:text-lg">
+              <FadeIn>
+                <p className="text-slate-600 dark:text-gray-400 max-w-2xl mx-auto lg:mx-0">
+                  Progressia convierte la educación financiera en una experiencia clara y progresiva.
+                </p>
+              </FadeIn>
+              <FadeIn>
+                <p className="text-slate-700 dark:text-gray-300 mt-4 max-w-2xl mx-auto lg:mx-0">
                   Cada lección está pensada para ayudarte a entender, practicar y avanzar sin presión.
                 </p>
-              </div>
+              </FadeIn>
+            </Stagger>
+
+            <FadeIn className="relative mx-auto w-full max-w-xl lg:max-w-none">
+              <Image
+                src="/seccion1.png"
+                alt="Aprendizaje claro y progresivo con Progressia"
+                width={1200}
+                height={900}
+                className="h-auto w-full rounded-2xl"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
             </FadeIn>
-          </Stagger>
+          </div>
         </div>
       </FadeInSection>
 
@@ -605,7 +614,7 @@ export default function LandingPage() {
           <FadeIn className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="flex items-center gap-2">
               <Image
-                src="/progressia.png"
+                src="/logo.png"
                 alt="Progressia"
                 width={200}
                 height={80}

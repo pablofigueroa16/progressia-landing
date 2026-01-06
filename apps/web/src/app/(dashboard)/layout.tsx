@@ -82,7 +82,7 @@ export default function DashboardLayout({
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2">
               <Image
-                src="/progressia.png"
+                src="/logo.png"
                 alt="Progressia"
                 width={200}
                 height={80}

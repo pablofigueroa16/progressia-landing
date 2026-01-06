@@ -27,21 +27,21 @@ export const metadata: Metadata = {
   keywords: ['trading', 'educación financiera', 'inversiones', 'bolsa', 'forex', 'crypto'],
   authors: [{ name: APP_NAME }],
   icons: {
-    icon: '/progressia.png',
-    apple: '/progressia.png',
-    shortcut: '/progressia.png',
+    icon: '/favicon.png',
+    apple: '/favicon.png',
+    shortcut: '/favicon.png',
   },
   openGraph: {
     title: APP_NAME,
     description: 'Aprende Trading de forma Gamificada',
     type: 'website',
-    images: ['/progressia.png'],
+    images: ['/favicon.png'],
   },
   twitter: {
     card: 'summary_large_image',
     title: APP_NAME,
     description: 'Aprende Trading de forma Gamificada',
-    images: ['/progressia.png'],
+    images: ['/favicon.png'],
   },
 }
 
