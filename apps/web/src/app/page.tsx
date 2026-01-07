@@ -2,7 +2,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { Button } from '@/components/ui/button'
-import { StartProButton } from '@/components/billing/start-pro-button'
 import { WaitlistButton } from '@/components/waitlist/waitlist-button'
 import { FadeIn, FadeInLi, FadeInSection, FadeInStagger, Stagger, StaggerList } from '@/components/motion/fade-in'
 import {
@@ -36,7 +35,7 @@ export default function LandingPage() {
             </div>
             <div className="flex items-center gap-4">
               <ThemeToggle className="text-slate-700 hover:text-slate-900 dark:text-white/80 dark:hover:text-white" />
-              <Link href="/login">
+              {/* <Link href="/login">
                 <Button variant="ghost" className="text-slate-700 hover:text-slate-900 dark:text-white/80 dark:hover:text-white">
                   Iniciar Sesión
                 </Button>
@@ -45,7 +44,7 @@ export default function LandingPage() {
                 <Button className="bg-brand-500 hover:bg-brand-600">
                   Comenzar Gratis
                 </Button>
-              </Link>
+              </Link> */}
             </div>
           </div>
         </div>
@@ -75,7 +74,7 @@ export default function LandingPage() {
               <FadeIn>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                   <WaitlistButton />
-                  <Link href="/login">
+                  {/* <Link href="/login">
                     <Button
                       size="xl"
                       variant="outline"
@@ -83,7 +82,7 @@ export default function LandingPage() {
                     >
                       Ya tengo una cuenta
                     </Button>
-                  </Link>
+                  </Link> */}
                 </div>
               </FadeIn>
             </Stagger>
@@ -414,7 +413,7 @@ export default function LandingPage() {
 
             <FadeIn className="relative mx-auto w-full max-w-xl lg:max-w-none lg:order-1">
               <Image
-                src="/seccion9.png"
+                src="/educacion.png"
                 alt="Educación responsable en Progressia"
                 width={1200}
                 height={900}
@@ -518,11 +517,11 @@ export default function LandingPage() {
                   </StaggerList>
 
                   <FadeIn className="mt-auto mb-4">
-                    <Link href="/register">
-                      <Button variant="outline" className="w-full border-slate-300 text-slate-900 hover:bg-slate-100 dark:border-white/20 dark:text-white dark:hover:bg-white/10">
-                        Comenzar Gratis
-                      </Button>
-                    </Link>
+                    <WaitlistButton
+                      text="Acceso anticipado"
+                      variant="outline"
+                      className="border-slate-300 text-slate-900 hover:bg-slate-100 dark:border-white/20 dark:text-white dark:hover:bg-white/10"
+                    />
                   </FadeIn>
                 </Stagger>
               </FadeIn>
@@ -563,7 +562,10 @@ export default function LandingPage() {
                   </StaggerList>
 
                   <FadeIn className="mt-auto mb-4">
-                    <StartProButton className="w-full" />
+                    <WaitlistButton
+                      text="Acceso anticipado"
+                      className="bg-brand-500 hover:bg-brand-600"
+                    />
                   </FadeIn>
                 </Stagger>
               </FadeIn>
