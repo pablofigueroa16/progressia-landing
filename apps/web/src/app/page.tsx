@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { Button } from '@/components/ui/button'
 import { WaitlistButton } from '@/components/waitlist/waitlist-button'
+import { TypingText } from '@/components/motion/typing-text'
 import { FadeIn, FadeInLi, FadeInSection, FadeInStagger, Stagger, StaggerList } from '@/components/motion/fade-in'
 import {
   Shield,
@@ -59,9 +60,11 @@ export default function LandingPage() {
                 <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold font-display leading-tight mb-6">
                   La forma simple y efectiva de
                   <br />
-                  <span className="bg-gradient-to-r from-brand-400 via-brand-500 to-accent-purple bg-clip-text text-transparent">
-                    aprender finanzas
-                  </span>
+                  <span className="text-brand-500">aprender{' '}</span>
+                  <TypingText
+                    words={['finanzas', 'trading']}
+                    className="text-brand-500"
+                  />
                 </h1>
               </FadeIn>
 
