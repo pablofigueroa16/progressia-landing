@@ -617,8 +617,19 @@ export default function LandingPage() {
       </FadeInSection>
 
       {/* Vision Section */}
-      <FadeInSection className="relative z-10 py-24 px-4">
-        <div className="max-w-5xl mx-auto">
+      <FadeInSection className="relative z-10 py-24 px-4 overflow-hidden">
+        {/* Background image with overlay */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/seccion_vision.png"
+            alt=""
+            fill
+            className="object-cover opacity-10 dark:opacity-5"
+            sizes="100vw"
+          />
+        </div>
+
+        <div className="relative z-10 max-w-5xl mx-auto">
           <Stagger className="text-center">
             <FadeIn>
               <h2 className="text-3xl sm:text-5xl font-bold font-display mb-4">
@@ -644,28 +655,24 @@ export default function LandingPage() {
           <Stagger>
             <FadeIn>
               <h2 className="text-3xl sm:text-5xl font-bold font-display mb-6">
-                <span className={SECTION_TITLE_COLOR}>Empieza hoy</span>
+                <span className={SECTION_TITLE_COLOR}>Progressia está llegando</span>
               </h2>
             </FadeIn>
             <FadeIn>
               <p className="text-slate-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
-                Crea tu cuenta gratuita y completa tu primera lección.
+                La nueva forma de aprender trading y educación financiera, paso a paso.
+                Botón
               </p>
             </FadeIn>
             <FadeIn>
-              <Link href="/register">
-                <Button size="xl" className="group">
-                  Crear Cuenta Gratis
-                  <ChevronRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </Link>
+              <WaitlistButton
+                text="Quiero acceso anticipado"
+                className="bg-brand-500 hover:bg-brand-600"
+              />
             </FadeIn>
             <FadeIn>
               <p className="text-slate-600 dark:text-gray-400 mt-4">
-                ¿Ya tienes cuenta?{' '}
-                <Link href="/login" className="text-brand-400 hover:text-brand-300 font-medium">
-                  Inicia sesión
-                </Link>
+                Acceso limitado para los primeros usuarios.
               </p>
             </FadeIn>
           </Stagger>
