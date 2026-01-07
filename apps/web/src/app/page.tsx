@@ -391,6 +391,90 @@ export default function LandingPage() {
         </div>
       </FadeInSection>
 
+      {/* Impact Numbers Section */}
+      <FadeInSection className="relative z-10 pt-24 px-4">
+        <div className="max-w-7xl mx-auto">
+          <Stagger className="text-center">
+            <FadeIn>
+              <h2 className="text-3xl sm:text-5xl font-bold font-display mb-4">
+                <span className={SECTION_TITLE_COLOR}>Progressia en números</span>
+              </h2>
+            </FadeIn>
+
+            <FadeIn>
+              <p className="text-slate-600 dark:text-gray-400 text-lg max-w-3xl mx-auto mb-4">
+                Aprender con impacto real
+              </p>
+            </FadeIn>
+
+            <FadeIn>
+              <p className="text-slate-700 dark:text-gray-300 text-base max-w-3xl mx-auto mb-16">
+                Progressia nace con una misión clara: educar mejor, llegar más lejos y generar impacto positivo.
+              </p>
+            </FadeIn>
+
+            <Stagger className="grid md:grid-cols-3 gap-8 mt-12">
+              {/* Card 1: +4,000 preguntas */}
+              <FadeIn className="flex flex-col items-center">
+                <div className="relative w-full max-w-sm">
+                  <Image
+                    src="/tarjeta sección +4000 preguntas.png"
+                    alt="+4,000 preguntas sobre trading"
+                    width={400}
+                    height={400}
+                    className="h-auto w-full"
+                  />
+                </div>
+                <div className="mt-6 text-center px-4">
+                  <h3 className="text-2xl font-bold mb-2 text-slate-900 dark:text-white">+4.000 preguntas</h3>
+                  <p className="text-slate-600 dark:text-gray-400">
+                    Sobre trading y educación financiera, diseñadas para aprender paso a paso.
+                  </p>
+                </div>
+              </FadeIn>
+
+              {/* Card 2: +750M usuarios */}
+              <FadeIn className="flex flex-col items-center">
+                <div className="relative w-full max-w-sm">
+                  <Image
+                    src="/tarjeta +750M usuarios.png"
+                    alt="+750 millones de personas"
+                    width={400}
+                    height={400}
+                    className="h-auto w-full"
+                  />
+                </div>
+                <div className="mt-6 text-center px-4">
+                  <h3 className="text-2xl font-bold mb-2 text-slate-900 dark:text-white">+750 millones de personas</h3>
+                  <p className="text-slate-600 dark:text-gray-400">
+                    Creemos que millones de personas estudiarán con Progressia en los próximos años.
+                  </p>
+                </div>
+              </FadeIn>
+
+              {/* Card 3: 10% con propósito */}
+              <FadeIn className="flex flex-col items-center">
+                <div className="relative w-full max-w-sm">
+                  <Image
+                    src="/donaciontarjeta.png"
+                    alt="10% con propósito"
+                    width={400}
+                    height={400}
+                    className="h-auto w-full"
+                  />
+                </div>
+                <div className="mt-6 text-center px-4">
+                  <h3 className="text-2xl font-bold mb-2 text-slate-900 dark:text-white">10% con propósito</h3>
+                  <p className="text-slate-600 dark:text-gray-400">
+                    El 10% de lo que generemos irá a niños y jóvenes de Latinoamérica que necesiten acceso a educación de calidad.
+                  </p>
+                </div>
+              </FadeIn>
+            </Stagger>
+          </Stagger>
+        </div>
+      </FadeInSection>
+
       {/* Responsible Education Section */}
       <FadeInSection className="relative z-10 py-24 px-4">
         <div className="max-w-7xl mx-auto">
