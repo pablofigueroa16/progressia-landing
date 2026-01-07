@@ -28,8 +28,9 @@ export default function LandingPage() {
               <Image
                 src="/logo2.png"
                 alt="Progressia"
-                width={80}
-                height={30}
+                width={960}
+                height={240}
+                quality={100}
                 className="h-12 w-auto"
                 priority
               />
@@ -784,8 +785,9 @@ export default function LandingPage() {
                 <Image
                   src="/logo.png"
                   alt="Progressia"
-                  width={200}
-                  height={80}
+                  width={800}
+                  height={320}
+                  quality={100}
                   className="h-20 w-auto brightness-0 invert drop-shadow-[0_2px_6px_rgba(0,0,0,0.25)]"
                 />
               </div>
