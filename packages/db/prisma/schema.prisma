@@ -30,56 +30,56 @@ enum Objective {
 }
 
 model User {
-  id            String   @id @default(cuid())
-  email         String   @unique
+  id            String    @id @default(cuid())
+  email         String    @unique
   passwordHash  String
-  emailVerified Boolean  @default(false)
+  emailVerified Boolean   @default(false)
   verifyToken   String?
   resetToken    String?
   resetExpires  DateTime?
-  role          Role     @default(USER)
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  role          Role      @default(USER)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
 
   // Relaciones
-  profile           Profile?
-  sessions          Session[]
-  lessonProgress    UserLessonProgress[]
-  quizAttempts      QuizAttempt[]
-  xpEvents          XPEvent[]
-  streak            Streak?
-  userBadges        UserBadge[]
-  leagueEntries     LeagueEntry[]
-  subscription      Subscription?
-  
+  profile        Profile?
+  sessions       Session[]
+  lessonProgress UserLessonProgress[]
+  quizAttempts   QuizAttempt[]
+  xpEvents       XPEvent[]
+  streak         Streak?
+  userBadges     UserBadge[]
+  leagueEntries  LeagueEntry[]
+  subscription   Subscription?
+
   // Amigos
-  sentRequests      FriendRequest[] @relation("SentRequests")
-  receivedRequests  FriendRequest[] @relation("ReceivedRequests")
-  friendsAsUser1    Friendship[]    @relation("FriendshipUser1")
-  friendsAsUser2    Friendship[]    @relation("FriendshipUser2")
-  
+  sentRequests     FriendRequest[] @relation("SentRequests")
+  receivedRequests FriendRequest[] @relation("ReceivedRequests")
+  friendsAsUser1   Friendship[]    @relation("FriendshipUser1")
+  friendsAsUser2   Friendship[]    @relation("FriendshipUser2")
+
   // Retos
   challengeMembers  ChallengeMember[]
-  createdChallenges Challenge[]     @relation("ChallengeCreator")
+  createdChallenges Challenge[]       @relation("ChallengeCreator")
 
   @@index([email])
 }
 
 model Profile {
-  id          String     @id @default(cuid())
-  userId      String     @unique
-  displayName String
-  username    String     @unique
-  country     String?
-  timezone    String     @default("America/Mexico_City")
-  experience  Experience @default(BEGINNER)
-  objective   Objective  @default(LEARN)
-  avatarUrl   String?
-  avatarPreset String?   @default("default")
-  bio         String?    @db.VarChar(280)
-  dailyGoal   Int        @default(10) // minutos: 5, 10 o 15
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
+  id           String     @id @default(cuid())
+  userId       String     @unique
+  displayName  String
+  username     String     @unique
+  country      String?
+  timezone     String     @default("America/Mexico_City")
+  experience   Experience @default(BEGINNER)
+  objective    Objective  @default(LEARN)
+  avatarUrl    String?
+  avatarPreset String?    @default("default")
+  bio          String?    @db.VarChar(280)
+  dailyGoal    Int        @default(10) // minutos: 5, 10 o 15
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -154,10 +154,10 @@ model Lesson {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  unit           Unit                 @relation(fields: [unitId], references: [id], onDelete: Cascade)
-  quizQuestions  QuizQuestion[]
-  userProgress   UserLessonProgress[]
-  quizAttempts   QuizAttempt[]
+  unit          Unit                 @relation(fields: [unitId], references: [id], onDelete: Cascade)
+  quizQuestions QuizQuestion[]
+  userProgress  UserLessonProgress[]
+  quizAttempts  QuizAttempt[]
 
   @@unique([unitId, number])
   @@index([unitId])
@@ -171,16 +171,16 @@ enum QuizType {
 }
 
 model QuizQuestion {
-  id          String   @id @default(cuid())
-  lessonId    String
-  type        QuizType
-  question    String   @db.Text
-  options     Json     // Array de opciones
-  correctAnswer Json   // Respuesta(s) correcta(s)
-  explanation String?  @db.Text
-  order       Int      @default(0)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id            String   @id @default(cuid())
+  lessonId      String
+  type          QuizType
+  question      String   @db.Text
+  options       Json // Array de opciones
+  correctAnswer Json // Respuesta(s) correcta(s)
+  explanation   String?  @db.Text
+  order         Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 
   lesson Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
 
@@ -190,15 +190,15 @@ model QuizQuestion {
 // ==================== PROGRESO ====================
 
 model UserLessonProgress {
-  id          String   @id @default(cuid())
+  id          String    @id @default(cuid())
   userId      String
   lessonId    String
-  completed   Boolean  @default(false)
+  completed   Boolean   @default(false)
   completedAt DateTime?
-  xpEarned    Int      @default(0)
-  timeSpent   Int      @default(0) // segundos
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  xpEarned    Int       @default(0)
+  timeSpent   Int       @default(0) // segundos
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   lesson Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
@@ -209,14 +209,14 @@ model UserLessonProgress {
 }
 
 model QuizAttempt {
-  id          String   @id @default(cuid())
-  userId      String
-  lessonId    String
-  answers     Json     // Respuestas del usuario
-  score       Int      // Puntuación 0-100
-  isPerfect   Boolean  @default(false)
-  xpEarned    Int      @default(0)
-  createdAt   DateTime @default(now())
+  id        String   @id @default(cuid())
+  userId    String
+  lessonId  String
+  answers   Json // Respuestas del usuario
+  score     Int // Puntuación 0-100
+  isPerfect Boolean  @default(false)
+  xpEarned  Int      @default(0)
+  createdAt DateTime @default(now())
 
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   lesson Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
@@ -244,7 +244,7 @@ model XPEvent {
   userId    String
   type      XPEventType
   amount    Int
-  metadata  Json?       // Info adicional
+  metadata  Json? // Info adicional
   createdAt DateTime    @default(now())
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -280,10 +280,10 @@ model Badge {
 }
 
 model UserBadge {
-  id        String   @id @default(cuid())
-  userId    String
-  badgeId   String
-  earnedAt  DateTime @default(now())
+  id       String   @id @default(cuid())
+  userId   String
+  badgeId  String
+  earnedAt DateTime @default(now())
 
   user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
   badge Badge @relation(fields: [badgeId], references: [id], onDelete: Cascade)
@@ -374,22 +374,22 @@ model Friendship {
 // ==================== RETOS (CHALLENGES) ====================
 
 enum ChallengeType {
-  DUEL        // 1v1
-  GROUP       // Equipo
+  DUEL // 1v1
+  GROUP // Equipo
 }
 
 enum ChallengeGoalType {
-  LESSONS_COMPLETE  // Completa X lecciones
-  XP_EARNED         // Gana X XP
-  PERFECT_QUIZZES   // Haz X quizzes perfectos
-  TOTAL_XP          // Suma X XP (grupo)
+  LESSONS_COMPLETE // Completa X lecciones
+  XP_EARNED // Gana X XP
+  PERFECT_QUIZZES // Haz X quizzes perfectos
+  TOTAL_XP // Suma X XP (grupo)
 }
 
 enum ChallengeStatus {
-  PENDING     // Esperando participantes
-  ACTIVE      // En progreso
-  COMPLETED   // Terminado
-  CANCELLED   // Cancelado
+  PENDING // Esperando participantes
+  ACTIVE // En progreso
+  COMPLETED // Terminado
+  CANCELLED // Cancelado
 }
 
 model Challenge {
@@ -397,17 +397,17 @@ model Challenge {
   creatorId   String
   type        ChallengeType
   goalType    ChallengeGoalType
-  goalTarget  Int               // Cantidad objetivo
+  goalTarget  Int // Cantidad objetivo
   title       String
   description String?
   status      ChallengeStatus   @default(PENDING)
   startsAt    DateTime          @default(now())
   endsAt      DateTime
-  winnerId    String?           // Solo para duelos
+  winnerId    String? // Solo para duelos
   createdAt   DateTime          @default(now())
   updatedAt   DateTime          @updatedAt
 
-  creator User @relation("ChallengeCreator", fields: [creatorId], references: [id], onDelete: Cascade)
+  creator User              @relation("ChallengeCreator", fields: [creatorId], references: [id], onDelete: Cascade)
   members ChallengeMember[]
 
   @@index([creatorId])
@@ -468,18 +468,31 @@ model Subscription {
 // ==================== RATE LIMITING ====================
 
 model RateLimit {
-  id         String   @id @default(cuid())
-  identifier String   // IP o userId
-  endpoint   String
-  count      Int      @default(1)
+  id          String   @id @default(cuid())
+  identifier  String // IP o userId
+  endpoint    String
+  count       Int      @default(1)
   windowStart DateTime @default(now())
-  
+
   @@unique([identifier, endpoint])
   @@index([identifier])
   @@index([windowStart])
 }
 
+// ==================== WAITING LIST ====================
+
+model WaitlistUser {
+  id          String    @id @default(cuid())
+  name        String
+  email       String    @unique
+  emailSent   Boolean   @default(false)
+  emailSentAt DateTime?
+  createdAt   DateTime  @default(now())
+
+  @@index([email])
+  @@index([createdAt])
+}
+
 // Alias para la relación Challenge -> User (creator)
 // Prisma requiere que el modelo referenciado exista, usamos User
 // pero lo definimos como "Creator" en la relación
-

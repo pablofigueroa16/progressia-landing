@@ -42,17 +42,17 @@ const config: Config = {
         },
         // Brand colors - Fintech moderno con toque gamificado
         brand: {
-          50: '#f0fdf4',
-          100: '#dcfce7',
-          200: '#bbf7d0',
-          300: '#86efac',
-          400: '#4ade80',
-          500: '#22c55e', // Primary green
-          600: '#16a34a',
-          700: '#15803d',
-          800: '#166534',
-          900: '#14532d',
-          950: '#052e16',
+          50: '#f4fbe9',
+          100: '#e6f7cd',
+          200: '#ceef9f',
+          300: '#b0e166',
+          400: '#89d13a',
+          500: '#61c021', // Brand green
+          600: '#4fa018',
+          700: '#3f7d16',
+          800: '#336215',
+          900: '#2b5114',
+          950: '#142a07',
         },
         accent: {
           gold: '#FFD700',
@@ -77,15 +77,15 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ['var(--font-geist-sans)', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-poppins)', 'system-ui', 'sans-serif'],
         mono: ['var(--font-geist-mono)', 'monospace'],
-        display: ['var(--font-cabinet)', 'system-ui', 'sans-serif'],
+        display: ['var(--font-poppins)', 'system-ui', 'sans-serif'],
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
         'hero-pattern': 'url("/patterns/grid.svg")',
-        'card-gradient': 'linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%)',
+        'card-gradient': 'linear-gradient(135deg, rgba(97, 192, 33, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%)',
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -93,7 +93,7 @@ const config: Config = {
         sm: 'calc(var(--radius) - 4px)',
       },
       boxShadow: {
-        'glow': '0 0 20px rgba(34, 197, 94, 0.3)',
+        'glow': '0 0 20px rgba(97, 192, 33, 0.3)',
         'glow-purple': '0 0 20px rgba(139, 92, 246, 0.3)',
         'card': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)',
         'card-hover': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)',
@@ -134,8 +134,8 @@ const config: Config = {
           '50%': { transform: 'translateY(-5px)' },
         },
         pulseGlow: {
-          '0%, 100%': { boxShadow: '0 0 5px rgba(34, 197, 94, 0.5)' },
-          '50%': { boxShadow: '0 0 20px rgba(34, 197, 94, 0.8)' },
+          '0%, 100%': { boxShadow: '0 0 5px rgba(97, 192, 33, 0.5)' },
+          '50%': { boxShadow: '0 0 20px rgba(97, 192, 33, 0.8)' },
         },
         shimmer: {
           '0%': { backgroundPosition: '-200% 0' },

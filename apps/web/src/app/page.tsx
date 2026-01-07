@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { Button } from '@/components/ui/button'
 import { StartProButton } from '@/components/billing/start-pro-button'
+import { WaitlistButton } from '@/components/waitlist/waitlist-button'
 import { FadeIn, FadeInLi, FadeInSection, FadeInStagger, Stagger, StaggerList } from '@/components/motion/fade-in'
 import {
   Shield,
@@ -14,22 +15,22 @@ const SECTION_TITLE_COLOR = 'text-brand-500'
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-dark-950 text-slate-900 dark:text-white overflow-hidden">
+    <div className="min-h-screen bg-slate-50 dark:bg-dark-950 text-slate-900 dark:text-white overflow-x-hidden">
       {/* Background effects */}
       <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-brand-500/10 via-slate-50 to-slate-50 dark:from-brand-900/20 dark:via-dark-950 dark:to-dark-950" />
       <div className="fixed inset-0 bg-[url('/grid.svg')] bg-center opacity-10 dark:opacity-5" />
 
       {/* Navigation */}
-      <nav className="relative z-10 border-b border-white/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav className="sticky top-0 z-50 border-b border-slate-200/60 bg-slate-50/80 backdrop-blur-xl supports-[backdrop-filter]:bg-slate-50/60 dark:border-white/10 dark:bg-dark-950/60">
+        <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-2">
               <Image
-                src="/logo.png"
+                src="/logo2.png"
                 alt="Progressia"
-                width={200}
-                height={80}
-                className="h-28 w-auto"
+                width={80}
+                height={30}
+                className="h-12 w-auto"
                 priority
               />
             </div>
@@ -73,12 +74,7 @@ export default function LandingPage() {
 
               <FadeIn>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                  <Link href="/register">
-                    <Button size="xl" className="w-full sm:w-auto group">
-                      Empezar Ahora - Es Gratis
-                      <ChevronRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                    </Button>
-                  </Link>
+                  <WaitlistButton />
                   <Link href="/login">
                     <Button
                       size="xl"
@@ -191,7 +187,7 @@ export default function LandingPage() {
               </h2>
             </FadeIn>
 
-            <Stagger className="grid md:grid-cols-2 gap-6">
+            <Stagger className="grid md:grid-cols-3 gap-6">
               <FadeIn className="group p-8 rounded-2xl bg-white/80 border border-slate-200/80 shadow-sm hover:bg-white transition-all duration-300 dark:bg-white/5 dark:border-white/10 dark:shadow-none dark:hover:bg-white/10">
                 <h3 className="text-2xl font-bold mb-2">📘 Lecciones cortas</h3>
                 <p className="text-slate-600 dark:text-gray-400">
@@ -203,6 +199,13 @@ export default function LandingPage() {
                 <h3 className="text-2xl font-bold mb-2">🔁 Práctica diaria</h3>
                 <p className="text-slate-600 dark:text-gray-400">
                   Refuerza lo aprendido sin sentirte abrumado.
+                </p>
+              </FadeIn>
+
+              <FadeIn className="group p-8 rounded-2xl bg-white/80 border border-slate-200/80 shadow-sm hover:bg-white transition-all duration-300 dark:bg-white/5 dark:border-white/10 dark:shadow-none dark:hover:bg-white/10">
+                <h3 className="text-2xl font-bold mb-2">🔔 Progreso visible</h3>
+                <p className="text-slate-600 dark:text-gray-400">
+                  Sigue tu avance, mantén tu racha y sube de nivel.
                 </p>
               </FadeIn>
             </Stagger>
@@ -424,6 +427,51 @@ export default function LandingPage() {
       </FadeInSection>
 
 
+      {/* Progressia Smart Section */}
+      <FadeInSection className="relative z-10 py-28 px-4 bg-white dark:bg-black">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <Stagger className="text-center lg:text-left">
+              <FadeIn className="relative mx-auto w-full max-w-xl lg:max-w-none">
+                {/* Light theme */}
+                <Image
+                  src="/smart_claro.png"
+                  alt="Progressia Smart (tema claro)"
+                  width={1000}
+                  height={800}
+                  className="block w-full h-auto dark:hidden"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+                {/* Dark theme */}
+                <Image
+                  src="/smart_oscuro.png"
+                  alt="Progressia Smart (tema oscuro)"
+                  width={1000}
+                  height={800}
+                  className="hidden w-full h-auto dark:block"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+              </FadeIn>
+            </Stagger>
+
+            <FadeIn className="relative mx-auto w-full max-w-xl lg:max-w-none">
+              <Image
+                src="/progressia_smart.png"
+                alt="Progressia Smart"
+                width={1000}
+                height={800}
+                className="h-auto w-full"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+              <div className="absolute bottom-8 left-1/2 -translate-x-1/2 w-full flex justify-center px-4">
+                <WaitlistButton />
+              </div>
+            </FadeIn>
+          </div>
+        </div>
+      </FadeInSection>
+
+
       {/* Pricing Section */}
       <FadeInSection className="relative z-10 py-24 px-4">
         <div className="max-w-5xl mx-auto">
@@ -441,8 +489,8 @@ export default function LandingPage() {
 
             <Stagger className="grid md:grid-cols-2 gap-8">
               {/* Free Plan */}
-              <FadeIn className="p-8 rounded-2xl bg-white/80 border border-slate-200/80 shadow-sm dark:bg-white/5 dark:border-white/10 dark:shadow-none">
-                <Stagger>
+              <FadeIn className="p-8 rounded-2xl bg-white/80 border border-slate-200/80 dark:bg-white/5 dark:border-white/10 dark:shadow-none flex flex-col h-full">
+                <Stagger className="flex flex-col h-full">
                   <FadeIn className="mb-6">
                     <h3 className="text-2xl font-bold mb-2">Gratis</h3>
                     <p className="text-slate-600 dark:text-gray-400 mb-4">
@@ -454,11 +502,13 @@ export default function LandingPage() {
                     <div className="text-4xl font-bold">$0<span className="text-lg text-slate-500 dark:text-gray-400">/mes</span></div>
                   </FadeIn>
 
-                  <StaggerList className="space-y-4 mb-8">
+                  <StaggerList className="space-y-4 mb-8 flex-1">
                     {[
-                      'Lecciones básicas',
-                      'Retos diarios',
-                      'Progreso y rachas',
+                      'Niveles 1-2 completos',
+                      'Gamificación básica (XP, rachas, ranking)',
+                      'Sistema de amigos',
+                      '2 retos por semana',
+                      'Leaderboard semanal',
                     ].map((item, i) => (
                       <FadeInLi key={i} className="flex items-center gap-3">
                         <Star className="w-5 h-5 text-brand-500" />
@@ -467,7 +517,7 @@ export default function LandingPage() {
                     ))}
                   </StaggerList>
 
-                  <FadeIn>
+                  <FadeIn className="mt-auto mb-4">
                     <Link href="/register">
                       <Button variant="outline" className="w-full border-slate-300 text-slate-900 hover:bg-slate-100 dark:border-white/20 dark:text-white dark:hover:bg-white/10">
                         Comenzar Gratis
@@ -478,13 +528,13 @@ export default function LandingPage() {
               </FadeIn>
 
               {/* Pro Plan */}
-              <FadeIn className="relative p-8 rounded-2xl bg-white/80 border border-slate-200/80 shadow-sm dark:bg-dark-950 dark:bg-gradient-to-br dark:from-brand-500/12 dark:via-dark-950 dark:to-accent-purple/10 dark:border-brand-500/30 dark:shadow-none">
+              <FadeIn className="relative p-8 rounded-2xl bg-white/80 border border-slate-200/80 dark:bg-dark-950 dark:bg-gradient-to-br dark:from-brand-500/12 dark:via-dark-950 dark:to-accent-purple/10 dark:border-brand-500/30 dark:shadow-none flex flex-col h-full">
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-brand-500 to-accent-purple rounded-full text-sm font-medium text-white shadow-sm dark:shadow-none">
                   Más Popular
                 </div>
-                <Stagger>
+                <Stagger className="flex flex-col h-full">
                   <FadeIn className="mb-6">
-                    <h3 className="text-2xl font-bold mb-2">Progressia Plus</h3>
+                    <h3 className="text-2xl font-bold mb-2">Progressia Smart</h3>
                     <p className="text-slate-700 dark:text-gray-300 mb-4">
                       Acceso completo para aprender sin límites.
                     </p>
@@ -492,15 +542,18 @@ export default function LandingPage() {
                       <span className="text-sm text-green-700 dark:text-green-300 font-semibold">Perfecto para empezar</span>
                     </div>
                     <div className="text-4xl font-bold">$15.99<span className="text-lg text-slate-500 dark:text-gray-400">/mes</span></div>
-                    <p className="text-sm text-slate-600 dark:text-gray-400 mt-1">o $149/año (ahorra 22%)</p>
+                    <p className="text-sm text-slate-600 dark:text-gray-400 mt-1">o $163.99/año (ahorra 15%)</p>
                   </FadeIn>
 
-                  <StaggerList className="space-y-4 mb-8">
+                  <StaggerList className="space-y-4 mb-8 flex-1">
                     {[
-                      'Todo el contenido disponible',
-                      'Lecciones avanzadas',
-                      'Estadísticas de progreso',
-                      'Acceso prioritario a nuevas funciones',
+                      'Todos los niveles desbloqueados',
+                      'Retos ilimitados',
+                      'Estadísticas avanzadas',
+                      'Certificación en blockchain',
+                      'Coach AI personalizado (próximamente)',
+                      'Soporte prioritario',
+                      'Sin publicidad',
                     ].map((item, i) => (
                       <FadeInLi key={i} className="flex items-center gap-3">
                         <Star className="w-5 h-5 text-accent-gold" />
@@ -509,7 +562,7 @@ export default function LandingPage() {
                     ))}
                   </StaggerList>
 
-                  <FadeIn>
+                  <FadeIn className="mt-auto mb-4">
                     <StartProButton className="w-full" />
                   </FadeIn>
                 </Stagger>
@@ -618,41 +671,52 @@ export default function LandingPage() {
       </FadeInSection>
 
       {/* Footer */}
-      <footer className="relative z-10 border-t border-white/5 py-12 px-4">
-        <FadeInStagger className="max-w-7xl mx-auto">
-          <FadeIn className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="flex items-center gap-2">
-              <Image
-                src="/logo.png"
-                alt="Progressia"
-                width={200}
-                height={80}
-                className="h-20 w-auto"
-              />
-            </div>
-            <div className="flex items-center gap-6 text-sm text-slate-600 dark:text-gray-400">
-              <Link href="/terms" className="hover:text-slate-900 dark:hover:text-white transition-colors">Términos</Link>
-              <Link href="/privacy" className="hover:text-slate-900 dark:hover:text-white transition-colors">Privacidad</Link>
-              <Link href="/contact" className="hover:text-slate-900 dark:hover:text-white transition-colors">Contacto</Link>
-            </div>
-          </FadeIn>
+      <footer className="relative z-10 border-t border-white/5">
+        <Image
+          src="/footer.png"
+          alt="Ilustración del footer"
+          width={5000}
+          height={2000}
+          className="block w-full h-auto"
+          sizes="100vw"
+        />
 
-          {/* Risk Disclaimer */}
-          <FadeIn className="mt-8 p-4 rounded-lg bg-yellow-500/10 border border-yellow-500/20 text-sm text-yellow-900/80 dark:text-yellow-200/80">
-            <div className="flex items-start gap-3">
-              <Shield className="w-5 h-5 text-yellow-500 flex-shrink-0 mt-0.5" />
-              <p>
-                <strong>Aviso de Riesgo:</strong> Progressia es una plataforma educativa.
-                El contenido no constituye asesoría financiera. Operar en mercados financieros
-                conlleva riesgos significativos. Consulta siempre con un profesional antes de invertir.
-              </p>
-            </div>
-          </FadeIn>
+        <div className="pt-0 pb-12 px-4 bg-[#61c021] dark:bg-[#61c021] text-white">
+          <FadeInStagger className="max-w-7xl mx-auto">
+            <FadeIn className="flex flex-col md:flex-row justify-between items-center gap-6">
+              <div className="flex items-center gap-2">
+                <Image
+                  src="/logo.png"
+                  alt="Progressia"
+                  width={200}
+                  height={80}
+                  className="h-20 w-auto brightness-0 invert drop-shadow-[0_2px_6px_rgba(0,0,0,0.25)]"
+                />
+              </div>
+              <div className="flex items-center gap-6 text-sm text-white/90">
+                <Link href="/terms" className="hover:text-white transition-colors">Términos</Link>
+                <Link href="/privacy" className="hover:text-white transition-colors">Privacidad</Link>
+                <Link href="/contact" className="hover:text-white transition-colors">Contacto</Link>
+              </div>
+            </FadeIn>
 
-          <FadeIn className="mt-8 text-center text-sm text-slate-500 dark:text-gray-500">
-            © 2024 Progressia. Todos los derechos reservados.
-          </FadeIn>
-        </FadeInStagger>
+            {/* Risk Disclaimer */}
+            <FadeIn className="mt-8 p-4 rounded-lg bg-white/15 border border-white/25 text-sm text-white/90">
+              <div className="flex items-start gap-3">
+                <Shield className="w-5 h-5 text-yellow-200 flex-shrink-0 mt-0.5" />
+                <p>
+                  <strong>Aviso de Riesgo:</strong> Progressia es una plataforma educativa.
+                  El contenido no constituye asesoría financiera. Operar en mercados financieros
+                  conlleva riesgos significativos. Consulta siempre con un profesional antes de invertir.
+                </p>
+              </div>
+            </FadeIn>
+
+            <FadeIn className="mt-8 text-center text-sm text-white/70">
+              © 2024 Progressia. Todos los derechos reservados.
+            </FadeIn>
+          </FadeInStagger>
+        </div>
       </footer>
     </div>
   )
