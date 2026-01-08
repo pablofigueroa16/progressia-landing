@@ -738,35 +738,47 @@ export default function LandingPage() {
       </FadeInSection>
 
       {/* Vision Section */}
-      <FadeInSection className="relative z-10 py-24 px-4 overflow-hidden">
-        {/* Background image with overlay */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/seccion_vision.png"
-            alt=""
-            fill
-            className="object-cover opacity-10 dark:opacity-5"
-            sizes="100vw"
-          />
-        </div>
+      <FadeInSection className="relative z-10 py-24 px-4">
+        <div className="max-w-6xl mx-auto">
+          <FadeIn className="relative overflow-hidden rounded-3xl">
+            {/* Background image */}
+            <div className="absolute inset-0 z-0">
+              <Image
+                src="/seccion_vision.png"
+                alt=""
+                fill
+                className="object-cover object-[center_20%] opacity-50 dark:opacity-50"
+                sizes="100vw"
+              />
+            </div>
 
-        <div className="relative z-10 max-w-5xl mx-auto">
-          <Stagger className="text-center">
-            <FadeIn>
-              <h2 className="text-3xl sm:text-5xl font-bold font-display mb-4">
-                <span className={SECTION_TITLE_COLOR}>Una idea simple</span>
-              </h2>
-            </FadeIn>
+            {/* Content */}
+            <div className="relative z-10 px-8 py-16 sm:px-16 sm:py-24 text-left">
+              <Stagger>
+                <FadeIn>
+                  <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold font-display mb-6 text-brand-500 dark:text-white">
+                    Una idea simple
+                  </h2>
+                </FadeIn>
 
-            <FadeIn className="mt-10 p-8 sm:p-10 rounded-2xl">
-              <p className="text-slate-700 dark:text-gray-300 text-base sm:text-lg">
-                La educación financiera debería ser clara, accesible y constante.
-              </p>
-              <p className="text-slate-700 dark:text-gray-300 text-base sm:text-lg mt-4">
-                Progressia existe para ayudarte a progresar todos los días.
-              </p>
-            </FadeIn>
-          </Stagger>
+                <FadeIn>
+                  <p className="text-left dark:text-gray-300 text-slate-700 text-base sm:text-lg lg:text-xl max-w-3xl mb-4">
+                    La educación financiera debería ser clara, accesible y constante.
+                  </p>
+                  <p className="text-left dark:text-gray-400 text-slate-600 text-base sm:text-lg lg:text-xl max-w-3xl mb-10">
+                    Progressia existe para ayudarte a progresar todos los días.
+                  </p>
+                </FadeIn>
+
+                <FadeIn>
+                  <WaitlistButton
+                    text="Acceso anticipado"
+                    className="bg-brand-500 hover:bg-brand-600"
+                  />
+                </FadeIn>
+              </Stagger>
+            </div>
+          </FadeIn>
         </div>
       </FadeInSection>
 
