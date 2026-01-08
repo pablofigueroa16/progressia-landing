@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { WaitlistButton } from '@/components/waitlist/waitlist-button'
 import { TypingText } from '@/components/motion/typing-text'
 import { FadeIn, FadeInLi, FadeInSection, FadeInStagger, Stagger, StaggerList } from '@/components/motion/fade-in'
+import { BorderBeam } from '@/components/lightswind/border-beam'
 import {
   Shield,
   Star,
@@ -118,12 +119,12 @@ export default function LandingPage() {
               </FadeIn>
 
               <FadeIn>
-                <p className="text-slate-600 dark:text-gray-400 max-w-2xl mx-auto lg:mx-0">
+                <p className="text-slate-700 dark:text-gray-300 mt-4 max-w-2xl mx-auto lg:mx-0">
                   Progressia convierte la educación financiera en una experiencia clara y progresiva.
                 </p>
               </FadeIn>
               <FadeIn>
-                <p className="text-slate-700 dark:text-gray-300 mt-4 max-w-2xl mx-auto lg:mx-0">
+                <p className="text-slate-600 dark:text-gray-400 max-w-2xl mx-auto lg:mx-0">
                   Cada lección está pensada para ayudarte a entender, practicar y avanzar sin presión.
                 </p>
               </FadeIn>
@@ -155,12 +156,12 @@ export default function LandingPage() {
               </FadeIn>
 
               <FadeIn>
-                <p className="text-slate-600 dark:text-gray-400 max-w-2xl mx-auto lg:mx-0">
+                <p className="text-slate-700 dark:text-gray-300 mt-4 max-w-2xl mx-auto lg:mx-0">
                   Con lecciones cortas y ejercicios simples, Progressia te guía paso a paso.
                 </p>
               </FadeIn>
               <FadeIn>
-                <p className="text-slate-700 dark:text-gray-300 mt-4 max-w-2xl mx-auto lg:mx-0">
+                <p className="text-slate-600 dark:text-gray-400 max-w-2xl mx-auto lg:mx-0">
                   Aprendes algo nuevo cada día y refuerzas lo aprendido sin saturarte.
                 </p>
               </FadeIn>
@@ -228,12 +229,12 @@ export default function LandingPage() {
               </FadeIn>
 
               <FadeIn>
-                <p className="text-slate-600 dark:text-gray-400 max-w-2xl mx-auto lg:mx-0">
+                <p className="text-slate-700 dark:text-gray-300 mt-4 max-w-2xl mx-auto lg:mx-0">
                   Progressia usa mecánicas de juego para ayudarte a mantener el hábito.
                 </p>
               </FadeIn>
               <FadeIn>
-                <p className="text-slate-700 dark:text-gray-300 mt-4 max-w-2xl mx-auto lg:mx-0">
+                <p className="text-slate-600 dark:text-gray-400 max-w-2xl mx-auto lg:mx-0">
                   Aprender se vuelve algo diario, natural y motivador.
                 </p>
               </FadeIn>
@@ -334,12 +335,12 @@ export default function LandingPage() {
               </FadeIn>
 
               <FadeIn>
-                <p className="text-slate-600 dark:text-gray-400 max-w-2xl mx-auto lg:mx-0">
+                <p className="text-slate-700 dark:text-gray-300 mt-4 max-w-2xl mx-auto lg:mx-0">
                   Progressia no mide cuánto tiempo pasas mirando la pantalla.
                 </p>
               </FadeIn>
               <FadeIn>
-                <p className="text-slate-700 dark:text-gray-300 mt-4 max-w-2xl mx-auto lg:mx-0">
+                <p className="text-slate-600 dark:text-gray-400 max-w-2xl mx-auto lg:mx-0">
                   Mide cuánto aprendes y avanzas, día tras día.
                 </p>
               </FadeIn>
@@ -403,15 +404,16 @@ export default function LandingPage() {
             </FadeIn>
 
             <FadeIn>
-              <p className="text-slate-600 dark:text-gray-400 text-lg max-w-3xl mx-auto mb-4">
+              <p className="text-slate-600 font-bold dark:text-gray-400 text-lg max-w-3xl mx-auto mb-4">
                 Aprender con impacto real
               </p>
             </FadeIn>
 
             <FadeIn>
-              <p className="text-slate-700 dark:text-gray-300 text-base max-w-3xl mx-auto mb-16">
-                Progressia nace con una misión clara: educar mejor, llegar más lejos y generar impacto positivo.
+              <p className="text-slate-700 dark:text-gray-300 text-base max-w-3xl mx-auto mb-2">
+                Progressia nace con una misión clara:
               </p>
+              <p className="text-slate-700 dark:text-gray-300 text-base max-w-3xl mx-auto mb-2">Educar mejor, llegar más lejos y generar impacto positivo.</p>
             </FadeIn>
 
             <Stagger className="grid md:grid-cols-3 gap-8 mt-12">
@@ -448,7 +450,7 @@ export default function LandingPage() {
                 <div className="mt-6 text-center px-4">
                   <h3 className="text-2xl font-bold mb-2 text-slate-900 dark:text-white">+750 millones de personas</h3>
                   <p className="text-slate-600 dark:text-gray-400">
-                    Creemos que millones de personas estudiarán con Progressia en los próximos años.
+                    Creemos que millones estudiarán con Progressia en los próximos años.
                   </p>
                 </div>
               </FadeIn>
@@ -488,12 +490,12 @@ export default function LandingPage() {
               </FadeIn>
 
               <FadeIn>
-                <p className="text-slate-600 dark:text-gray-400 max-w-2xl mx-auto lg:mx-0">
+                <p className="text-slate-700 dark:text-gray-300 mt-4 max-w-2xl mx-auto lg:mx-0">
                   Progressia es una plataforma educativa.
                 </p>
               </FadeIn>
               <FadeIn>
-                <p className="text-slate-700 dark:text-gray-300 mt-4 max-w-2xl mx-auto lg:mx-0">
+                <p className="text-slate-600 dark:text-gray-400 max-w-2xl mx-auto lg:mx-0">
                   No es un broker ni promete resultados financieros. La educación es el primer paso para tomar buenas decisiones.
                 </p>
               </FadeIn>
@@ -542,6 +544,11 @@ export default function LandingPage() {
             </Stagger>
 
             <FadeIn className="relative mx-auto w-full max-w-xl lg:max-w-none">
+              <div className="absolute top-10 left-1/2 -translate-x-1/2 w-full flex justify-center px-4">
+                <h2 className="text-3xl sm:text-6xl font-bold font-display mb-4">
+                  <span className={SECTION_TITLE_COLOR}>Crece sin limites</span>
+                </h2>
+              </div>
               <Image
                 src="/progressia_smart.png"
                 alt="Progressia Smart"
@@ -567,95 +574,121 @@ export default function LandingPage() {
               <h2 className="text-3xl sm:text-5xl font-bold font-display mb-4">
                 <span className={SECTION_TITLE_COLOR}>Empieza gratis. Mejora cuando quieras.</span>
               </h2>
-              <p className="text-slate-600 dark:text-gray-400">
+              <p className="font-bold text-slate-600 dark:text-gray-400 mb-4">
                 Progressia es gratuita para comenzar.
-                Si quieres avanzar más rápido y desbloquear todo el contenido, puedes elegir Progressia
-                Plus.
               </p>
+              <p className="text-slate-700 dark:text-gray-300 text-base mx-auto mb-2">Si quieres avanzar más rápido y desbloquear todo el contenido, puedes elegir Progressia
+                Smart.</p>
             </FadeIn>
 
             <Stagger className="grid md:grid-cols-2 gap-8">
               {/* Free Plan */}
-              <FadeIn className="p-8 rounded-2xl bg-white/80 border border-slate-200/80 dark:bg-white/5 dark:border-white/10 dark:shadow-none flex flex-col h-full">
-                <Stagger className="flex flex-col h-full">
-                  <FadeIn className="mb-6">
-                    <h3 className="text-2xl font-bold mb-2">Gratis</h3>
-                    <p className="text-slate-600 dark:text-gray-400 mb-4">
-                      Aprende lo esencial y crea el hábito diario.
-                    </p>
-                    <div className="mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/20">
-                      <span className="text-sm text-green-700 dark:text-green-300 font-semibold">Perfecto para empezar</span>
-                    </div>
-                    <div className="text-4xl font-bold">$0<span className="text-lg text-slate-500 dark:text-gray-400">/mes</span></div>
-                  </FadeIn>
+              <FadeIn className="relative p-1 rounded-2xl overflow-hidden">
+                {/* <BorderBeam
+                  colorFrom="#94a3b8"
+                  colorTo="#cbd5e1"
+                  size={200}
+                  duration={4}
+                  delay={0}
+                  opacity={1}
+                  borderThickness={10}
+                  glowIntensity={10}
+                  pauseOnHover={true}
+                /> */}
+                <div className="relative p-8 rounded-2xl bg-white/80  border border-slate-200/80 dark:bg-white/5 dark:border-white/10 dark:shadow-none flex flex-col h-full z-10">
+                  <Stagger className="flex flex-col h-full">
+                    <FadeIn className="mb-6">
+                      <h3 className="text-2xl font-bold mb-2">Gratis</h3>
+                      <p className="text-slate-600 dark:text-gray-400 mb-4">
+                        Aprende lo esencial y crea el hábito diario.
+                      </p>
+                      <div className="mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/20">
+                        <span className="text-sm text-green-700 dark:text-green-300 font-semibold">Perfecto para empezar</span>
+                      </div>
+                      <div className="text-4xl font-bold">$0<span className="text-lg text-slate-500 dark:text-gray-400">/mes</span></div>
+                    </FadeIn>
 
-                  <StaggerList className="space-y-4 mb-8 flex-1">
-                    {[
-                      'Niveles 1-2 completos',
-                      'Gamificación básica (XP, rachas, ranking)',
-                      'Sistema de amigos',
-                      '2 retos por semana',
-                      'Leaderboard semanal',
-                    ].map((item, i) => (
-                      <FadeInLi key={i} className="flex items-center gap-3">
-                        <Star className="w-5 h-5 text-brand-500" />
-                        <span className="text-slate-700 dark:text-gray-300">{item}</span>
-                      </FadeInLi>
-                    ))}
-                  </StaggerList>
+                    <StaggerList className="space-y-4 mb-8 flex-1">
+                      {[
+                        'Niveles 1-2 completos',
+                        'Gamificación básica (XP, rachas, ranking)',
+                        'Sistema de amigos',
+                        '2 retos por semana',
+                        'Leaderboard semanal',
+                      ].map((item, i) => (
+                        <FadeInLi key={i} className="flex items-center gap-3">
+                          <Star className="w-5 h-5 text-brand-500" />
+                          <span className="text-slate-700 dark:text-gray-300">{item}</span>
+                        </FadeInLi>
+                      ))}
+                    </StaggerList>
 
-                  <FadeIn className="mt-auto mb-4">
-                    <WaitlistButton
-                      text="Acceso anticipado"
-                      variant="outline"
-                      className="border-slate-300 text-slate-900 hover:bg-slate-100 dark:border-white/20 dark:text-white dark:hover:bg-white/10"
-                    />
-                  </FadeIn>
-                </Stagger>
+                    <FadeIn className="mt-auto mb-4">
+                      <WaitlistButton
+                        text="Acceso anticipado"
+                        variant="outline"
+                        className="border-slate-300 text-slate-900 hover:bg-slate-100 dark:border-white/20 dark:text-white dark:hover:bg-white/10"
+                      />
+                    </FadeIn>
+                  </Stagger>
+                </div>
               </FadeIn>
 
               {/* Pro Plan */}
-              <FadeIn className="relative p-8 rounded-2xl bg-white/80 border border-slate-200/80 dark:bg-dark-950 dark:bg-gradient-to-br dark:from-brand-500/12 dark:via-dark-950 dark:to-accent-purple/10 dark:border-brand-500/30 dark:shadow-none flex flex-col h-full">
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-brand-500 to-accent-purple rounded-full text-sm font-medium text-white shadow-sm dark:shadow-none">
+              <FadeIn className="relative p-1 rounded-2xl">
+                <BorderBeam
+                  colorFrom="#61c021"
+                  colorTo="#7ed631"
+                  size={300}
+                  duration={4}
+                  delay={0}
+                  opacity={1}
+                  borderThickness={10}
+                  glowIntensity={10}
+                  pauseOnHover={true}
+                />
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-brand-500 rounded-full text-sm font-medium text-white shadow-sm dark:shadow-none z-20">
                   Más Popular
                 </div>
-                <Stagger className="flex flex-col h-full">
-                  <FadeIn className="mb-6">
-                    <h3 className="text-2xl font-bold mb-2">Progressia Smart</h3>
-                    <p className="text-slate-700 dark:text-gray-300 mb-4">
-                      Acceso completo para aprender sin límites.
-                    </p>
-                    <div className="mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/20">
-                      <span className="text-sm text-green-700 dark:text-green-300 font-semibold">Perfecto para empezar</span>
-                    </div>
-                    <div className="text-4xl font-bold">$15.99<span className="text-lg text-slate-500 dark:text-gray-400">/mes</span></div>
-                    <p className="text-sm text-slate-600 dark:text-gray-400 mt-1">o $163.99/año (ahorra 15%)</p>
-                  </FadeIn>
+                <div className="relative p-8 rounded-2xl bg-white/800 dark:bg-dark-950 dark:bg-gradient-to-br dark:from-brand-500/12 dark:via-dark-950 dark:to-accent-purple/10 dark:border-brand-500/30 dark:shadow-none flex flex-col h-full z-10">
+                  <Stagger className="flex flex-col h-full">
+                    <FadeIn className="mb-6">
+                      <h3 className="text-2xl font-bold mb-2">Progressia Smart</h3>
+                      <p className="text-slate-700 dark:text-gray-300 mb-4">
+                        Acceso completo para aprender sin límites.
+                      </p>
+                      <div className="mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/20">
+                        <span className="text-sm text-green-700 dark:text-green-300 font-semibold">Perfecto para empezar</span>
+                      </div>
+                      <div className="text-4xl font-bold">$15.99<span className="text-lg text-slate-500 dark:text-gray-400">/mes</span></div>
+                      <p className="text-sm text-slate-600 dark:text-gray-400 mt-1">o $163.99/año (ahorra 15%)</p>
+                    </FadeIn>
 
-                  <StaggerList className="space-y-4 mb-8 flex-1">
-                    {[
-                      'Todos los niveles desbloqueados',
-                      'Retos ilimitados',
-                      'Estadísticas avanzadas',
-                      'Certificación en blockchain',
-                      'Coach AI personalizado (próximamente)',
-                      'Soporte prioritario',
-                      'Sin publicidad',
-                    ].map((item, i) => (
-                      <FadeInLi key={i} className="flex items-center gap-3">
-                        <Star className="w-5 h-5 text-accent-gold" />
-                        <span className="text-slate-700 dark:text-gray-300">{item}</span>
-                      </FadeInLi>
-                    ))}
-                  </StaggerList>
+                    <StaggerList className="space-y-4 mb-8 flex-1">
+                      {[
+                        'Todos los niveles desbloqueados',
+                        'Retos ilimitados',
+                        'Estadísticas avanzadas',
+                        'Certificación en blockchain',
+                        'Coach AI personalizado (próximamente)',
+                        'Soporte prioritario',
+                        'Sin publicidad',
+                      ].map((item, i) => (
+                        <FadeInLi key={i} className="flex items-center gap-3">
+                          <Star className="w-5 h-5 text-accent-gold" />
+                          <span className="text-slate-700 dark:text-gray-300">{item}</span>
+                        </FadeInLi>
+                      ))}
+                    </StaggerList>
 
-                  <FadeIn className="mt-auto mb-4">
-                    <WaitlistButton
-                      text="Acceso anticipado"
-                      className="bg-brand-500 hover:bg-brand-600"
-                    />
-                  </FadeIn>
-                </Stagger>
+                    <FadeIn className="mt-auto mb-4">
+                      <WaitlistButton
+                        text="Acceso anticipado"
+                        className="bg-brand-500 hover:bg-brand-600"
+                      />
+                    </FadeIn>
+                  </Stagger>
+                </div>
               </FadeIn>
             </Stagger>
 
@@ -679,12 +712,12 @@ export default function LandingPage() {
               </FadeIn>
 
               <FadeIn>
-                <p className="text-slate-600 dark:text-gray-400 max-w-2xl mx-auto lg:mx-0">
+                <p className="text-slate-700 dark:text-gray-300 mt-4 max-w-2xl mx-auto lg:mx-0">
                   Desde tu móvil, en cualquier momento y en solo unos minutos al día.
                 </p>
               </FadeIn>
               <FadeIn>
-                <p className="text-slate-700 dark:text-gray-300 mt-4 max-w-2xl mx-auto lg:mx-0">
+                <p className="text-slate-600 dark:text-gray-400 max-w-2xl mx-auto lg:mx-0">
                   Aprender se adapta a tu vida, no al revés.
                 </p>
               </FadeIn>
