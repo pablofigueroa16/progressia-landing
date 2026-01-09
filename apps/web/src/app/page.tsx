@@ -87,7 +87,7 @@ export default function LandingPage() {
 
               <FadeIn>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                  <WaitlistButton />
+                  <WaitlistButton text={t('hero.cta')} />
                   {/* <Link href="/login">
                     <Button
                       size="xl"
@@ -123,18 +123,18 @@ export default function LandingPage() {
             <Stagger className="text-center lg:text-left lg:order-2">
               <FadeIn>
                 <h2 className="text-3xl sm:text-5xl font-bold font-display mb-4">
-                  <span className={SECTION_TITLE_COLOR}>Aprender no tiene por qué ser complicado</span>
+                  <span className={SECTION_TITLE_COLOR}>{t('valueProposition.title')}</span>
                 </h2>
               </FadeIn>
 
               <FadeIn>
                 <p className="text-slate-700 dark:text-gray-300 mt-4 max-w-2xl mx-auto lg:mx-0">
-                  Progressia convierte la educación financiera en una experiencia clara y progresiva.
+                  {t('valueProposition.description1')}
                 </p>
               </FadeIn>
               <FadeIn>
                 <p className="text-slate-600 dark:text-gray-400 max-w-2xl mx-auto lg:mx-0">
-                  Cada lección está pensada para ayudarte a entender, practicar y avanzar sin presión.
+                  {t('valueProposition.description2')}
                 </p>
               </FadeIn>
             </Stagger>
@@ -160,18 +160,18 @@ export default function LandingPage() {
             <Stagger className="text-center lg:text-left">
               <FadeIn>
                 <h2 className="text-3xl sm:text-5xl font-bold font-display mb-4">
-                  <span className={SECTION_TITLE_COLOR}>Aprende en pocos minutos al día</span>
+                  <span className={SECTION_TITLE_COLOR}>{t('howItWorks.title')}</span>
                 </h2>
               </FadeIn>
 
               <FadeIn>
                 <p className="text-slate-700 dark:text-gray-300 mt-4 max-w-2xl mx-auto lg:mx-0">
-                  Con lecciones cortas y ejercicios simples, Progressia te guía paso a paso.
+                  {t('howItWorks.description1')}
                 </p>
               </FadeIn>
               <FadeIn>
                 <p className="text-slate-600 dark:text-gray-400 max-w-2xl mx-auto lg:mx-0">
-                  Aprendes algo nuevo cada día y refuerzas lo aprendido sin saturarte.
+                  {t('howItWorks.description2')}
                 </p>
               </FadeIn>
             </Stagger>
@@ -196,7 +196,7 @@ export default function LandingPage() {
           <Stagger>
             <FadeIn className="text-center mb-12">
               <h2 className="text-5xl sm:text-5xl font-bold font-display mb-4">
-                <span className={SECTION_TITLE_COLOR}>Un sistema diseñado para avanzar</span>
+                <span className={SECTION_TITLE_COLOR}>{t('method.title')}</span>
               </h2>
             </FadeIn>
 
@@ -206,10 +206,10 @@ export default function LandingPage() {
                   <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-500/20 text-brand-600 dark:bg-brand-500/10 dark:text-brand-400">
                     <MethodLessonsIcon />
                   </div>
-                  <h3 className="text-2xl font-bold">Lecciones cortas</h3>
+                  <h3 className="text-2xl font-bold">{t('method.card1Title')}</h3>
                 </div>
                 <p className="text-slate-600 dark:text-gray-400">
-                  Conceptos claros que puedes completar en minutos.
+                  {t('method.card1Description')}
                 </p>
               </FadeIn>
 
@@ -218,10 +218,10 @@ export default function LandingPage() {
                   <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-purple-500/10 text-purple-600 dark:bg-purple-500/10 dark:text-purple-400">
                     <MethodPracticeIcon />
                   </div>
-                  <h3 className="text-2xl font-bold">Práctica diaria</h3>
+                  <h3 className="text-2xl font-bold">{t('method.card2Title')}</h3>
                 </div>
                 <p className="text-slate-600 dark:text-gray-400">
-                  Refuerza lo aprendido sin sentirte abrumado.
+                  {t('method.card2Description')}
                 </p>
               </FadeIn>
 
@@ -230,10 +230,10 @@ export default function LandingPage() {
                   <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-amber-500/10 text-amber-600 dark:bg-amber-500/10 dark:text-amber-400">
                     <MethodProgressIcon />
                   </div>
-                  <h3 className="text-2xl font-bold">Progreso visible</h3>
+                  <h3 className="text-2xl font-bold">{t('method.card3Title')}</h3>
                 </div>
                 <p className="text-slate-600 dark:text-gray-400">
-                  Sigue tu avance, mantén tu racha y sube de nivel.
+                  {t('method.card3Description')}
                 </p>
               </FadeIn>
             </Stagger>
@@ -248,18 +248,18 @@ export default function LandingPage() {
             <Stagger className="text-center lg:text-left lg:order-2">
               <FadeIn>
                 <h2 className="text-3xl sm:text-5xl font-bold font-display mb-4">
-                  <span className={SECTION_TITLE_COLOR}>La constancia es la verdadera ventaja</span>
+                  <span className={SECTION_TITLE_COLOR}>{t('motivation.title')}</span>
                 </h2>
               </FadeIn>
 
               <FadeIn>
                 <p className="text-slate-700 dark:text-gray-300 mt-4 max-w-2xl mx-auto lg:mx-0">
-                  Progressia usa mecánicas de juego para ayudarte a mantener el hábito.
+                  {t('motivation.description1')}
                 </p>
               </FadeIn>
               <FadeIn>
                 <p className="text-slate-600 dark:text-gray-400 max-w-2xl mx-auto lg:mx-0">
-                  Aprender se vuelve algo diario, natural y motivador.
+                  {t('motivation.description2')}
                 </p>
               </FadeIn>
             </Stagger>
@@ -285,14 +285,13 @@ export default function LandingPage() {
             <Stagger className="text-center lg:text-left">
               <FadeIn>
                 <h2 className="text-3xl sm:text-5xl font-bold font-display mb-4">
-                  <span className={SECTION_TITLE_COLOR}>Educación financiera hecha simple</span>
+                  <span className={SECTION_TITLE_COLOR}>{t('learning.title')}</span>
                 </h2>
               </FadeIn>
 
               <FadeIn>
                 <p className="text-slate-600 dark:text-gray-400 max-w-2xl mx-auto lg:mx-0">
-                  Aprenderás los fundamentos del dinero, las finanzas personales y los conceptos básicos del trading,
-                  todo explicado de forma clara y progresiva para ayudarte a tomar mejores decisiones.
+                  {t('learning.description')}
                 </p>
               </FadeIn>
             </Stagger>
@@ -317,7 +316,7 @@ export default function LandingPage() {
           <Stagger>
             <FadeIn className="text-center mb-12">
               <h2 className="text-3xl sm:text-5xl font-bold font-display mb-4">
-                <span className={SECTION_TITLE_COLOR}>Hecho para personas reales</span>
+                <span className={SECTION_TITLE_COLOR}>{t('audience.title')}</span>
               </h2>
             </FadeIn>
 
@@ -327,10 +326,10 @@ export default function LandingPage() {
                   <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-green-500/10 text-green-600 dark:bg-green-500/10 dark:text-green-400">
                     <AudienceBeginnersIcon />
                   </div>
-                  <h3 className="text-2xl font-bold">Principiantes</h3>
+                  <h3 className="text-2xl font-bold">{t('audience.card1Title')}</h3>
                 </div>
                 <p className="text-slate-600 dark:text-gray-400">
-                  Empieza desde cero, sin experiencia previa.
+                  {t('audience.card1Description')}
                 </p>
               </FadeIn>
 
@@ -339,10 +338,10 @@ export default function LandingPage() {
                   <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-sky-500/10 text-sky-600 dark:bg-sky-500/10 dark:text-sky-400">
                     <AudienceCuriousIcon />
                   </div>
-                  <h3 className="text-2xl font-bold">Personas curiosas</h3>
+                  <h3 className="text-2xl font-bold">{t('audience.card2Title')}</h3>
                 </div>
                 <p className="text-slate-600 dark:text-gray-400">
-                  Entiende cómo funciona el dinero en la vida real.
+                  {t('audience.card2Description')}
                 </p>
               </FadeIn>
 
@@ -351,10 +350,10 @@ export default function LandingPage() {
                   <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-fuchsia-500/10 text-fuchsia-600 dark:bg-fuchsia-500/10 dark:text-fuchsia-400">
                     <AudienceTradersIcon />
                   </div>
-                  <h3 className="text-2xl font-bold">Traders en formación</h3>
+                  <h3 className="text-2xl font-bold">{t('audience.card3Title')}</h3>
                 </div>
                 <p className="text-slate-600 dark:text-gray-400">
-                  Refuerza bases, disciplina y criterio.
+                  {t('audience.card3Description')}
                 </p>
               </FadeIn>
             </Stagger>
@@ -369,18 +368,18 @@ export default function LandingPage() {
             <Stagger className="text-center lg:text-left lg:order-2">
               <FadeIn>
                 <h2 className="text-3xl sm:text-5xl font-bold font-display mb-4">
-                  <span className={SECTION_TITLE_COLOR}>Tu progreso siempre visible</span>
+                  <span className={SECTION_TITLE_COLOR}>{t('progress.title')}</span>
                 </h2>
               </FadeIn>
 
               <FadeIn>
                 <p className="text-slate-700 dark:text-gray-300 mt-4 max-w-2xl mx-auto lg:mx-0">
-                  Progressia no mide cuánto tiempo pasas mirando la pantalla.
+                  {t('progress.description1')}
                 </p>
               </FadeIn>
               <FadeIn>
                 <p className="text-slate-600 dark:text-gray-400 max-w-2xl mx-auto lg:mx-0">
-                  Mide cuánto aprendes y avanzas, día tras día.
+                  {t('progress.description2')}
                 </p>
               </FadeIn>
             </Stagger>
@@ -406,14 +405,13 @@ export default function LandingPage() {
             <Stagger className="text-center lg:text-left">
               <FadeIn>
                 <h2 className="text-3xl sm:text-5xl font-bold font-display mb-4">
-                  <span className={SECTION_TITLE_COLOR}>Aprender acompañado motiva más</span>
+                  <span className={SECTION_TITLE_COLOR}>{t('community.title')}</span>
                 </h2>
               </FadeIn>
 
               <FadeIn>
                 <p className="text-slate-600 dark:text-gray-400 max-w-2xl mx-auto lg:mx-0">
-                  Comparte el camino con otros estudiantes, participa en rankings y mantente motivado
-                  aprendiendo junto a personas con el mismo objetivo.
+                  {t('community.description')}
                 </p>
               </FadeIn>
             </Stagger>
@@ -438,21 +436,21 @@ export default function LandingPage() {
           <Stagger className="text-center">
             <FadeIn>
               <h2 className="text-3xl sm:text-5xl font-bold font-display mb-4">
-                <span className={SECTION_TITLE_COLOR}>Progressia en números</span>
+                <span className={SECTION_TITLE_COLOR}>{t('impact.title')}</span>
               </h2>
             </FadeIn>
 
             <FadeIn>
               <p className="text-slate-600 font-bold dark:text-gray-400 text-lg max-w-3xl mx-auto mb-4">
-                Aprender con impacto real
+                {t('impact.subtitle')}
               </p>
             </FadeIn>
 
             <FadeIn>
               <p className="text-slate-700 dark:text-gray-300 text-base max-w-3xl mx-auto mb-2">
-                Progressia nace con una misión clara:
+                {t('impact.description1')}
               </p>
-              <p className="text-slate-700 dark:text-gray-300 text-base max-w-3xl mx-auto mb-2">Educar mejor, llegar más lejos y generar impacto positivo.</p>
+              <p className="text-slate-700 dark:text-gray-300 text-base max-w-3xl mx-auto mb-2">{t('impact.description2')}</p>
             </FadeIn>
 
             <Stagger className="grid md:grid-cols-3 gap-8 mt-12">
@@ -468,9 +466,9 @@ export default function LandingPage() {
                   />
                 </div>
                 <div className="mt-6 text-center px-4">
-                  <h3 className="text-2xl font-bold mb-2 text-slate-900 dark:text-white">+4.000 preguntas</h3>
+                  <h3 className="text-2xl font-bold mb-2 text-slate-900 dark:text-white">{t('impact.card1Title')}</h3>
                   <p className="text-slate-600 dark:text-gray-400">
-                    Sobre trading y educación financiera, diseñadas para aprender paso a paso.
+                    {t('impact.card1Description')}
                   </p>
                 </div>
               </FadeIn>
@@ -487,9 +485,9 @@ export default function LandingPage() {
                   />
                 </div>
                 <div className="mt-6 text-center px-4">
-                  <h3 className="text-2xl font-bold mb-2 text-slate-900 dark:text-white">+750 millones de personas</h3>
+                  <h3 className="text-2xl font-bold mb-2 text-slate-900 dark:text-white">{t('impact.card2Title')}</h3>
                   <p className="text-slate-600 dark:text-gray-400">
-                    Creemos que millones estudiarán con Progressia en los próximos años.
+                    {t('impact.card2Description')}
                   </p>
                 </div>
               </FadeIn>
@@ -506,9 +504,9 @@ export default function LandingPage() {
                   />
                 </div>
                 <div className="mt-6 text-center px-4">
-                  <h3 className="text-2xl font-bold mb-2 text-slate-900 dark:text-white">10% con propósito</h3>
+                  <h3 className="text-2xl font-bold mb-2 text-slate-900 dark:text-white">{t('impact.card3Title')}</h3>
                   <p className="text-slate-600 dark:text-gray-400">
-                    El 10% de lo que generemos irá a niños y jóvenes de Latinoamérica que necesiten acceso a educación de calidad.
+                    {t('impact.card3Description')}
                   </p>
                 </div>
               </FadeIn>
@@ -524,18 +522,18 @@ export default function LandingPage() {
             <Stagger className="text-center lg:text-left lg:order-2">
               <FadeIn>
                 <h2 className="text-3xl sm:text-5xl font-bold font-display mb-4">
-                  <span className={SECTION_TITLE_COLOR}>Aprender primero, decidir mejor</span>
+                  <span className={SECTION_TITLE_COLOR}>{t('responsible.title')}</span>
                 </h2>
               </FadeIn>
 
               <FadeIn>
                 <p className="text-slate-700 dark:text-gray-300 mt-4 max-w-2xl mx-auto lg:mx-0">
-                  Progressia es una plataforma educativa.
+                  {t('responsible.description1')}
                 </p>
               </FadeIn>
               <FadeIn>
                 <p className="text-slate-600 dark:text-gray-400 max-w-2xl mx-auto lg:mx-0">
-                  No es un broker ni promete resultados financieros. La educación es el primer paso para tomar buenas decisiones.
+                  {t('responsible.description2')}
                 </p>
               </FadeIn>
             </Stagger>
@@ -599,8 +597,8 @@ export default function LandingPage() {
 
             <FadeIn className="relative mx-auto w-full max-w-xl lg:max-w-none">
               <div className="absolute top-10 left-1/2 -translate-x-1/2 w-full flex justify-center px-4">
-                <h2 className="text-3xl sm:text-6xl font-bold font-display mb-4 dark:text-white text-brand-500">
-                  ¡Crece sin limites!
+                <h2 className="whitespace-nowrap text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-display mb-4 dark:text-white text-brand-500 leading-none">
+                  {t('smart.title')}
                 </h2>
               </div>
               <Image
@@ -612,7 +610,7 @@ export default function LandingPage() {
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
               <div className="absolute bottom-8 left-1/2 -translate-x-1/2 w-full flex justify-center px-4">
-                <WaitlistButton />
+                <WaitlistButton text={t('pricing.pro.cta')} />
               </div>
             </FadeIn>
           </div>
@@ -626,13 +624,14 @@ export default function LandingPage() {
           <Stagger>
             <FadeIn className="text-center mb-16">
               <h2 className="text-3xl sm:text-5xl font-bold font-display mb-4">
-                <span className={SECTION_TITLE_COLOR}>Empieza gratis. Mejora cuando quieras.</span>
+                <span className={SECTION_TITLE_COLOR}>{t('pricing.title')}</span>
               </h2>
               <p className="font-bold text-slate-600 dark:text-gray-400 mb-4">
-                Progressia es gratuita para comenzar.
+                {t('pricing.subtitle')}
               </p>
-              <p className="text-slate-700 dark:text-gray-300 text-base mx-auto mb-2">Si quieres avanzar más rápido y desbloquear todo el contenido, puedes elegir Progressia
-                Smart.</p>
+              <p className="text-slate-700 dark:text-gray-300 text-base mx-auto mb-2">
+                {t('pricing.description')}
+              </p>
             </FadeIn>
 
             <Stagger className="grid md:grid-cols-2 gap-8">
@@ -641,23 +640,26 @@ export default function LandingPage() {
                 <div className="relative p-8 rounded-2xl bg-white/80  border border-slate-200/80 dark:bg-white/5 dark:border-white/10 dark:shadow-none flex flex-col h-full z-10">
                   <Stagger className="flex flex-col h-full">
                     <FadeIn className="mb-6">
-                      <h3 className="text-2xl font-bold mb-2">Gratis</h3>
+                      <h3 className="text-2xl font-bold mb-2">{t('pricing.free.title')}</h3>
                       <p className="text-slate-600 dark:text-gray-400 mb-4">
-                        Aprende lo esencial y crea el hábito diario.
+                        {t('pricing.free.description')}
                       </p>
                       <div className="mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/20">
-                        <span className="text-sm text-green-700 dark:text-green-300 font-semibold">Perfecto para empezar</span>
+                        <span className="text-sm text-green-700 dark:text-green-300 font-semibold">{t('pricing.free.badge')}</span>
                       </div>
-                      <div className="text-4xl font-bold">$0<span className="text-lg text-slate-500 dark:text-gray-400">/mes</span></div>
+                      <div className="text-4xl font-bold">
+                        {t('pricing.free.price')}
+                        <span className="text-lg text-slate-500 dark:text-gray-400">{t('pricing.free.perMonth')}</span>
+                      </div>
                     </FadeIn>
 
                     <StaggerList className="space-y-4 mb-8 flex-1">
                       {[
-                        'Niveles 1-2 completos',
-                        'Gamificación básica (XP, rachas, ranking)',
-                        'Sistema de amigos',
-                        '2 retos por semana',
-                        'Leaderboard semanal',
+                        t('pricing.free.features.feature1'),
+                        t('pricing.free.features.feature2'),
+                        t('pricing.free.features.feature3'),
+                        t('pricing.free.features.feature4'),
+                        t('pricing.free.features.feature5'),
                       ].map((item, i) => (
                         <FadeInLi key={i} className="flex items-center gap-3">
                           <Star className="w-5 h-5 text-brand-500" />
@@ -668,7 +670,7 @@ export default function LandingPage() {
 
                     <FadeIn className="mt-auto mb-4">
                       <WaitlistButton
-                        text="Acceso anticipado"
+                        text={t('pricing.free.cta')}
                         variant="outline"
                         className="border-slate-300 text-slate-900 hover:bg-slate-100 dark:border-white/20 dark:text-white dark:hover:bg-white/10"
                       />
@@ -691,31 +693,34 @@ export default function LandingPage() {
                   pauseOnHover={true}
                 />
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-brand-500 rounded-full text-sm font-medium text-white shadow-sm dark:shadow-none z-20">
-                  Más Popular
+                  {t('pricing.pro.badge')}
                 </div>
                 <div className="relative p-8 rounded-2xl bg-white/800 dark:bg-dark-950 dark:bg-gradient-to-br dark:from-brand-500/12 dark:via-dark-950 dark:to-accent-purple/10 dark:border-brand-500/30 dark:shadow-none flex flex-col h-full z-10">
                   <Stagger className="flex flex-col h-full">
                     <FadeIn className="mb-6">
-                      <h3 className="text-2xl font-bold mb-2">Progressia Smart</h3>
+                      <h3 className="text-2xl font-bold mb-2">{t('pricing.pro.title')}</h3>
                       <p className="text-slate-700 dark:text-gray-300 mb-4">
-                        Acceso completo para aprender sin límites.
+                        {t('pricing.pro.description')}
                       </p>
                       <div className="mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/20">
-                        <span className="text-sm text-green-700 dark:text-green-300 font-semibold">Perfecto para empezar</span>
+                        <span className="text-sm text-green-700 dark:text-green-300 font-semibold">{t('pricing.pro.perfectBadge')}</span>
                       </div>
-                      <div className="text-4xl font-bold">$15.99<span className="text-lg text-slate-500 dark:text-gray-400">/mes</span></div>
-                      <p className="text-sm text-slate-600 dark:text-gray-400 mt-1">o $163.99/año (ahorra 15%)</p>
+                      <div className="text-4xl font-bold">
+                        {t('pricing.pro.price')}
+                        <span className="text-lg text-slate-500 dark:text-gray-400">{t('pricing.pro.perMonth')}</span>
+                      </div>
+                      <p className="text-sm text-slate-600 dark:text-gray-400 mt-1">{t('pricing.pro.yearlyPrice')}</p>
                     </FadeIn>
 
                     <StaggerList className="space-y-4 mb-8 flex-1">
                       {[
-                        'Todos los niveles desbloqueados',
-                        'Retos ilimitados',
-                        'Estadísticas avanzadas',
-                        'Certificación en blockchain',
-                        'Coach AI personalizado (próximamente)',
-                        'Soporte prioritario',
-                        'Sin publicidad',
+                        t('pricing.pro.features.feature1'),
+                        t('pricing.pro.features.feature2'),
+                        t('pricing.pro.features.feature3'),
+                        t('pricing.pro.features.feature4'),
+                        t('pricing.pro.features.feature5'),
+                        t('pricing.pro.features.feature6'),
+                        t('pricing.pro.features.feature7'),
                       ].map((item, i) => (
                         <FadeInLi key={i} className="flex items-center gap-3">
                           <Star className="w-5 h-5 text-accent-gold" />
@@ -726,7 +731,7 @@ export default function LandingPage() {
 
                     <FadeIn className="mt-auto mb-4">
                       <WaitlistButton
-                        text="Acceso anticipado"
+                        text={t('pricing.pro.cta')}
                         className="bg-brand-500 hover:bg-brand-600"
                       />
                     </FadeIn>
@@ -736,8 +741,8 @@ export default function LandingPage() {
             </Stagger>
 
             <FadeIn className="mt-10 text-center text-sm text-slate-600 dark:text-gray-400">
-              Puedes cancelar en cualquier momento.
-              <span className="text-slate-700 dark:text-gray-300"> Sin compromisos. Sin letra pequeña.</span>
+              {t('pricing.disclaimer')}
+              <span className="text-slate-700 dark:text-gray-300"> {t('pricing.noCommitment')}</span>
             </FadeIn>
           </Stagger>
         </div>
@@ -750,18 +755,18 @@ export default function LandingPage() {
             <Stagger className="text-center lg:text-left">
               <FadeIn>
                 <h2 className="text-3xl sm:text-4xl font-bold font-display mb-4">
-                  <span className={SECTION_TITLE_COLOR}>Aprende cuando quieras</span>
+                  <span className={SECTION_TITLE_COLOR}>{t('accessibility.title')}</span>
                 </h2>
               </FadeIn>
 
               <FadeIn>
                 <p className="text-slate-700 dark:text-gray-300 mt-4 max-w-2xl mx-auto lg:mx-0">
-                  Desde tu móvil, en cualquier momento y en solo unos minutos al día.
+                  {t('accessibility.description1')}
                 </p>
               </FadeIn>
               <FadeIn>
                 <p className="text-slate-600 dark:text-gray-400 max-w-2xl mx-auto lg:mx-0">
-                  Aprender se adapta a tu vida, no al revés.
+                  {t('accessibility.description2')}
                 </p>
               </FadeIn>
             </Stagger>
@@ -812,22 +817,22 @@ export default function LandingPage() {
                 <Stagger>
                   <FadeIn>
                     <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold font-display mb-6 text-brand-500 dark:text-white">
-                      Una idea simple
+                      {t('vision.title')}
                     </h2>
                   </FadeIn>
 
                   <FadeIn>
                     <p className="text-left dark:text-gray-300 text-slate-700 text-base sm:text-lg lg:text-xl max-w-3xl mb-4">
-                      La educación financiera debería ser clara, accesible y constante.
+                      {t('vision.description1')}
                     </p>
                     <p className="text-left dark:text-gray-400 text-slate-600 text-base sm:text-lg lg:text-xl max-w-3xl mb-10">
-                      Progressia existe para ayudarte a progresar todos los días.
+                      {t('vision.description2')}
                     </p>
                   </FadeIn>
 
                   <FadeIn>
                     <WaitlistButton
-                      text="Acceso anticipado"
+                      text={t('vision.cta')}
                       className="bg-brand-500 hover:bg-brand-600"
                     />
                   </FadeIn>
@@ -844,24 +849,23 @@ export default function LandingPage() {
           <Stagger>
             <FadeIn>
               <h2 className="text-3xl sm:text-5xl font-bold font-display mb-6">
-                <span className={SECTION_TITLE_COLOR}>Progressia está llegando</span>
+                <span className={SECTION_TITLE_COLOR}>{t('cta.title')}</span>
               </h2>
             </FadeIn>
             <FadeIn>
               <p className="text-slate-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
-                La nueva forma de aprender trading y educación financiera, paso a paso.
-                Botón
+                {t('cta.description')}
               </p>
             </FadeIn>
             <FadeIn>
               <WaitlistButton
-                text="Quiero acceso anticipado"
+                text={t('cta.button')}
                 className="bg-brand-500 hover:bg-brand-600"
               />
             </FadeIn>
             <FadeIn>
               <p className="text-slate-600 dark:text-gray-400 mt-4">
-                Acceso limitado para los primeros usuarios.
+                {t('cta.limited')}
               </p>
             </FadeIn>
           </Stagger>
@@ -893,9 +897,9 @@ export default function LandingPage() {
                 />
               </div>
               <div className="flex items-center gap-6 text-sm text-white/90">
-                <Link href="/terms" className="hover:text-white transition-colors">Términos</Link>
-                <Link href="/privacy" className="hover:text-white transition-colors">Privacidad</Link>
-                <Link href="/contact" className="hover:text-white transition-colors">Contacto</Link>
+                <Link href="/terms" className="hover:text-white transition-colors">{t('footer.terms')}</Link>
+                <Link href="/privacy" className="hover:text-white transition-colors">{t('footer.privacy')}</Link>
+                <Link href="/contact" className="hover:text-white transition-colors">{t('footer.contact')}</Link>
               </div>
             </FadeIn>
 
@@ -904,15 +908,13 @@ export default function LandingPage() {
               <div className="flex items-start gap-3">
                 <Shield className="w-5 h-5 text-yellow-200 flex-shrink-0 mt-0.5" />
                 <p>
-                  <strong>Aviso de Riesgo:</strong> Progressia es una plataforma educativa.
-                  El contenido no constituye asesoría financiera. Operar en mercados financieros
-                  conlleva riesgos significativos. Consulta siempre con un profesional antes de invertir.
+                  <strong>{t('footer.riskTitle')}</strong> {t('footer.riskDescription')}
                 </p>
               </div>
             </FadeIn>
 
             <FadeIn className="mt-8 text-center text-sm text-white/70">
-              © 2024 Progressia. Todos los derechos reservados.
+              {t('footer.copyright')}
             </FadeIn>
           </FadeInStagger>
         </div>

@@ -1,8 +1,10 @@
 'use client'
 
-import React, { createContext, useContext, useEffect, useState } from 'react'
+import React, { createContext, useContext, useEffect, useMemo, useState } from 'react'
+import es from '@/translations/es'
+import en from '@/translations/en'
 
-type Language = 'es' | 'en'
+export type Language = 'es' | 'en'
 
 interface LanguageContextType {
   language: Language
@@ -12,41 +14,50 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
 
+const TRANSLATIONS: Record<Language, any> = { es, en }
+
+function getInitialLanguage(): Language {
+  if (typeof window === 'undefined') return 'es'
+  try {
+    const saved = localStorage.getItem('language') as Language | null
+    if (saved === 'es' || saved === 'en') return saved
+  } catch {
+    // ignore
+  }
+  const browserLang = (navigator.language || 'es').toLowerCase()
+  return browserLang.startsWith('en') ? 'en' : 'es'
+}
+
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguageState] = useState<Language>('es')
-  const [translations, setTranslations] = useState<Record<string, any>>({})
+  const [language, setLanguageState] = useState<Language>(() => getInitialLanguage())
 
-  // Detect browser language on mount
+  // Keep in sync with localStorage when user toggles
   useEffect(() => {
-    const browserLang = navigator.language.toLowerCase()
-    const detectedLang = browserLang.startsWith('en') ? 'en' : 'es'
-    const savedLang = localStorage.getItem('language') as Language
-    
-    setLanguageState(savedLang || detectedLang)
-  }, [])
+    try {
+      localStorage.setItem('language', language)
+    } catch {
+      // ignore
+    }
+  }, [language])
 
-  // Load translations when language changes
-  useEffect(() => {
-    import(`@/translations/${language}.ts`)
-      .then((module) => setTranslations(module.default))
-      .catch((err) => console.error('Error loading translations:', err))
+  const t = useMemo(() => {
+    const translations = TRANSLATIONS[language]
+
+    return (key: string): string => {
+      const keys = key.split('.')
+      let value: any = translations
+
+      for (const k of keys) {
+        value = value?.[k]
+        if (value === undefined) return key
+      }
+
+      return value || key
+    }
   }, [language])
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang)
-    localStorage.setItem('language', lang)
-  }
-
-  const t = (key: string): string => {
-    const keys = key.split('.')
-    let value: any = translations
-    
-    for (const k of keys) {
-      value = value?.[k]
-      if (value === undefined) return key
-    }
-    
-    return value || key
   }
 
   return (

@@ -6,6 +6,7 @@ import { X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { toast } from '@/components/ui/use-toast'
+import { useLanguage } from '@/contexts/language-context'
 
 interface WaitlistModalProps {
   isOpen: boolean
@@ -13,6 +14,7 @@ interface WaitlistModalProps {
 }
 
 export function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
+  const { t } = useLanguage()
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [isLoading, setIsLoading] = useState(false)
@@ -43,8 +45,8 @@ export function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
 
     if (!name.trim() || !email.trim()) {
       toast({
-        title: 'Error',
-        description: 'Por favor completa todos los campos',
+        title: t('waitlist.toastErrorTitle'),
+        description: t('waitlist.toastErrorMissingFields'),
         variant: 'destructive',
       })
       return
@@ -62,12 +64,12 @@ export function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
       const data = await res.json()
 
       if (!res.ok) {
-        throw new Error(data.error || 'Error al unirse a la lista de espera')
+        throw new Error(data.error || t('waitlist.toastErrorDefault'))
       }
 
       toast({
-        title: '¡Bienvenido a la lista de espera! 🚀',
-        description: 'Revisa tu correo para más información.',
+        title: t('waitlist.toastSuccessTitle'),
+        description: t('waitlist.toastSuccessDescription'),
         variant: 'success',
       })
 
@@ -76,8 +78,8 @@ export function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
       onClose()
     } catch (error) {
       toast({
-        title: 'Error',
-        description: error instanceof Error ? error.message : 'Error al unirse a la lista de espera',
+        title: t('waitlist.toastErrorTitle'),
+        description: error instanceof Error ? error.message : t('waitlist.toastErrorDefault'),
         variant: 'destructive',
       })
     } finally {
@@ -98,7 +100,7 @@ export function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors"
-          aria-label="Cerrar"
+          aria-label={t('waitlist.close')}
         >
           <X className="w-6 h-6" />
         </button>
@@ -106,10 +108,10 @@ export function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
         {/* Header */}
         <div className="mb-6">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-            Únete a la Lista de Espera 🚀
+            {t('waitlist.headerTitle')}
           </h2>
           <p className="text-gray-600 dark:text-gray-400">
-            Sé de los primeros en acceder a Progressia y recibe beneficios exclusivos.
+            {t('waitlist.headerDescription')}
           </p>
         </div>
 
@@ -117,12 +119,12 @@ export function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              Nombre
+              {t('waitlist.nameLabel')}
             </label>
             <Input
               id="name"
               type="text"
-              placeholder="Tu nombre"
+              placeholder={t('waitlist.namePlaceholder')}
               value={name}
               onChange={(e) => setName(e.target.value)}
               className="w-full"
@@ -132,12 +134,12 @@ export function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
 
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              Correo electrónico
+              {t('waitlist.emailLabel')}
             </label>
             <Input
               id="email"
               type="email"
-              placeholder="tu@email.com"
+              placeholder={t('waitlist.emailPlaceholder')}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="w-full"
@@ -150,7 +152,7 @@ export function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
             className="w-full bg-brand-500 hover:bg-brand-600"
             disabled={isLoading || !name.trim() || !email.trim()}
           >
-            {isLoading ? 'Uniéndote...' : 'Unirme a la Lista de Espera'}
+            {isLoading ? t('waitlist.submitting') : t('waitlist.submit')}
           </Button>
         </form>
       </div>
