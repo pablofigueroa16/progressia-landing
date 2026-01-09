@@ -1,20 +1,27 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
 import { ThemeToggle } from '@/components/theme-toggle'
-import { Button } from '@/components/ui/button'
 import { WaitlistButton } from '@/components/waitlist/waitlist-button'
 import { TypingText } from '@/components/motion/typing-text'
 import { FadeIn, FadeInLi, FadeInSection, FadeInStagger, Stagger, StaggerList } from '@/components/motion/fade-in'
 import { BorderBeam } from '@/components/lightswind/border-beam'
+import { SparkleParticles } from '@/components/ui/SparkleParticles'
+import { useLanguage } from '@/contexts/language-context'
+import { MethodLessonsIcon, MethodPracticeIcon, MethodProgressIcon } from '@/components/icons/method-icons'
+import { AudienceBeginnersIcon, AudienceCuriousIcon, AudienceTradersIcon } from '@/components/icons/audience-icons'
 import {
   Shield,
   Star,
-  ChevronRight,
 } from 'lucide-react'
+import { LanguageToggle } from '@/components/language-toggle'
 
 const SECTION_TITLE_COLOR = 'text-brand-500'
 
 export default function LandingPage() {
+  const { t } = useLanguage()
+
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-dark-950 text-slate-900 dark:text-white overflow-x-hidden">
       {/* Background effects */}
@@ -23,7 +30,7 @@ export default function LandingPage() {
 
       {/* Navigation */}
       <nav className="sticky top-0 z-50 border-b border-slate-200/60 bg-slate-50/80 backdrop-blur-xl supports-[backdrop-filter]:bg-slate-50/60 dark:border-white/10 dark:bg-dark-950/60">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-2">
               <Image
@@ -36,7 +43,8 @@ export default function LandingPage() {
                 priority
               />
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
+              <LanguageToggle className="text-slate-700 hover:text-slate-900 dark:text-white/80 dark:hover:text-white" />
               <ThemeToggle className="text-slate-700 hover:text-slate-900 dark:text-white/80 dark:hover:text-white" />
               {/* <Link href="/login">
                 <Button variant="ghost" className="text-slate-700 hover:text-slate-900 dark:text-white/80 dark:hover:text-white">
@@ -54,25 +62,26 @@ export default function LandingPage() {
       </nav>
 
       {/* Hero Section */}
-      <FadeInSection className="relative z-10 pt-20 pb-32 px-4">
+      <FadeInSection className="relative z-10 pt-12 pb-16 md:pt-16 md:pb-24 lg:pt-20 lg:pb-32 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <Stagger className="text-center lg:text-left">
               <FadeIn>
                 <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold font-display leading-tight mb-6">
-                  La forma simple y efectiva de
-                  <br />
-                  <span className="text-brand-500">aprender{' '}</span>
-                  <TypingText
-                    words={['finanzas', 'trading']}
-                    className="text-brand-500"
-                  />
+                  <span className="block mb-2">{t('hero.title1')}</span>
+                  <span className="flex flex-wrap items-baseline justify-center lg:justify-start gap-x-2 sm:gap-x-3">
+                    <span className="text-brand-500 whitespace-nowrap">{t('hero.title2')}</span>
+                    <TypingText
+                      words={[t('hero.word1'), t('hero.word2')]}
+                      className="text-brand-500"
+                    />
+                  </span>
                 </h1>
               </FadeIn>
 
               <FadeIn>
                 <p className="text-xl text-slate-600 dark:text-gray-400 max-w-2xl mx-auto lg:mx-0 mb-10">
-                  Aprende educación financiera y trading un poco cada día, con lecciones cortas y prácticas.
+                  {t('hero.description')}
                 </p>
               </FadeIn>
 
@@ -108,7 +117,7 @@ export default function LandingPage() {
       </FadeInSection>
 
       {/* Value Proposition Section */}
-      <FadeInSection className="relative z-10 py-24 px-4">
+      <FadeInSection className="relative z-10 py-12 md:py-16 lg:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <Stagger className="text-center lg:text-left lg:order-2">
@@ -145,7 +154,7 @@ export default function LandingPage() {
       </FadeInSection>
 
       {/* How it works Section */}
-      <FadeInSection id="features" className="relative z-10 py-24 px-4">
+      <FadeInSection id="features" className="relative z-10 py-12 md:py-16 lg:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <Stagger className="text-center lg:text-left">
@@ -182,7 +191,7 @@ export default function LandingPage() {
       </FadeInSection>
 
       {/* Method Section */}
-      <FadeInSection className="relative z-10 py-24 px-4">
+      <FadeInSection className="relative z-10 py-12 md:py-16 lg:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <Stagger>
             <FadeIn className="text-center mb-12">
@@ -193,21 +202,36 @@ export default function LandingPage() {
 
             <Stagger className="grid md:grid-cols-3 gap-6">
               <FadeIn className="group p-8 rounded-2xl bg-white/80 border border-slate-200/80 shadow-sm hover:bg-white transition-all duration-300 dark:bg-white/5 dark:border-white/10 dark:shadow-none dark:hover:bg-white/10">
-                <h3 className="text-2xl font-bold mb-2">📘 Lecciones cortas</h3>
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-500/20 text-brand-600 dark:bg-brand-500/10 dark:text-brand-400">
+                    <MethodLessonsIcon />
+                  </div>
+                  <h3 className="text-2xl font-bold">Lecciones cortas</h3>
+                </div>
                 <p className="text-slate-600 dark:text-gray-400">
                   Conceptos claros que puedes completar en minutos.
                 </p>
               </FadeIn>
 
               <FadeIn className="group p-8 rounded-2xl bg-white/80 border border-slate-200/80 shadow-sm hover:bg-white transition-all duration-300 dark:bg-white/5 dark:border-white/10 dark:shadow-none dark:hover:bg-white/10">
-                <h3 className="text-2xl font-bold mb-2">🔁 Práctica diaria</h3>
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-purple-500/10 text-purple-600 dark:bg-purple-500/10 dark:text-purple-400">
+                    <MethodPracticeIcon />
+                  </div>
+                  <h3 className="text-2xl font-bold">Práctica diaria</h3>
+                </div>
                 <p className="text-slate-600 dark:text-gray-400">
                   Refuerza lo aprendido sin sentirte abrumado.
                 </p>
               </FadeIn>
 
               <FadeIn className="group p-8 rounded-2xl bg-white/80 border border-slate-200/80 shadow-sm hover:bg-white transition-all duration-300 dark:bg-white/5 dark:border-white/10 dark:shadow-none dark:hover:bg-white/10">
-                <h3 className="text-2xl font-bold mb-2">🔔 Progreso visible</h3>
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-amber-500/10 text-amber-600 dark:bg-amber-500/10 dark:text-amber-400">
+                    <MethodProgressIcon />
+                  </div>
+                  <h3 className="text-2xl font-bold">Progreso visible</h3>
+                </div>
                 <p className="text-slate-600 dark:text-gray-400">
                   Sigue tu avance, mantén tu racha y sube de nivel.
                 </p>
@@ -218,7 +242,7 @@ export default function LandingPage() {
       </FadeInSection>
 
       {/* Motivation Section */}
-      <FadeInSection className="relative z-10 py-24 px-4">
+      <FadeInSection className="relative z-10 py-12 md:py-16 lg:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <Stagger className="text-center lg:text-left lg:order-2">
@@ -255,7 +279,7 @@ export default function LandingPage() {
       </FadeInSection>
 
       {/* Learning Section */}
-      <FadeInSection className="relative z-10 py-24 px-4">
+      <FadeInSection className="relative z-10 py-12 md:py-16 lg:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <Stagger className="text-center lg:text-left">
@@ -288,7 +312,7 @@ export default function LandingPage() {
       </FadeInSection>
 
       {/* Audience Section */}
-      <FadeInSection className="relative z-10 py-24 px-4">
+      <FadeInSection className="relative z-10 py-12 md:py-16 lg:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <Stagger>
             <FadeIn className="text-center mb-12">
@@ -299,21 +323,36 @@ export default function LandingPage() {
 
             <Stagger className="grid md:grid-cols-3 gap-6">
               <FadeIn className="group p-8 rounded-2xl bg-white/80 border border-slate-200/80 shadow-sm hover:bg-white transition-all duration-300 dark:bg-white/5 dark:border-white/10 dark:shadow-none dark:hover:bg-white/10">
-                <h3 className="text-2xl font-bold mb-2">🟢 Principiantes</h3>
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-green-500/10 text-green-600 dark:bg-green-500/10 dark:text-green-400">
+                    <AudienceBeginnersIcon />
+                  </div>
+                  <h3 className="text-2xl font-bold">Principiantes</h3>
+                </div>
                 <p className="text-slate-600 dark:text-gray-400">
                   Empieza desde cero, sin experiencia previa.
                 </p>
               </FadeIn>
 
               <FadeIn className="group p-8 rounded-2xl bg-white/80 border border-slate-200/80 shadow-sm hover:bg-white transition-all duration-300 dark:bg-white/5 dark:border-white/10 dark:shadow-none dark:hover:bg-white/10">
-                <h3 className="text-2xl font-bold mb-2">🔵 Personas curiosas</h3>
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-sky-500/10 text-sky-600 dark:bg-sky-500/10 dark:text-sky-400">
+                    <AudienceCuriousIcon />
+                  </div>
+                  <h3 className="text-2xl font-bold">Personas curiosas</h3>
+                </div>
                 <p className="text-slate-600 dark:text-gray-400">
                   Entiende cómo funciona el dinero en la vida real.
                 </p>
               </FadeIn>
 
               <FadeIn className="group p-8 rounded-2xl bg-white/80 border border-slate-200/80 shadow-sm hover:bg-white transition-all duration-300 dark:bg-white/5 dark:border-white/10 dark:shadow-none dark:hover:bg-white/10">
-                <h3 className="text-2xl font-bold mb-2">🟣 Traders en formación</h3>
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-fuchsia-500/10 text-fuchsia-600 dark:bg-fuchsia-500/10 dark:text-fuchsia-400">
+                    <AudienceTradersIcon />
+                  </div>
+                  <h3 className="text-2xl font-bold">Traders en formación</h3>
+                </div>
                 <p className="text-slate-600 dark:text-gray-400">
                   Refuerza bases, disciplina y criterio.
                 </p>
@@ -324,7 +363,7 @@ export default function LandingPage() {
       </FadeInSection>
 
       {/* Progress Section */}
-      <FadeInSection className="relative z-10 py-24 px-4">
+      <FadeInSection className="relative z-10 py-12 md:py-16 lg:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <Stagger className="text-center lg:text-left lg:order-2">
@@ -361,7 +400,7 @@ export default function LandingPage() {
       </FadeInSection>
 
       {/* Community Section */}
-      <FadeInSection className="relative z-10 py-24 px-4">
+      <FadeInSection className="relative z-10 py-12 md:py-16 lg:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <Stagger className="text-center lg:text-left">
@@ -394,7 +433,7 @@ export default function LandingPage() {
       </FadeInSection>
 
       {/* Impact Numbers Section */}
-      <FadeInSection className="relative z-10 pt-24 px-4">
+      <FadeInSection className="relative z-10 pt-12 md:pt-16 lg:pt-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <Stagger className="text-center">
             <FadeIn>
@@ -479,7 +518,7 @@ export default function LandingPage() {
       </FadeInSection>
 
       {/* Responsible Education Section */}
-      <FadeInSection className="relative z-10 py-24 px-4">
+      <FadeInSection className="relative z-10 py-12 md:py-16 lg:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <Stagger className="text-center lg:text-left lg:order-2">
@@ -517,8 +556,23 @@ export default function LandingPage() {
 
 
       {/* Progressia Smart Section */}
-      <FadeInSection className="relative z-10 py-28 px-4 bg-white dark:bg-black">
-        <div className="max-w-7xl mx-auto">
+      <FadeInSection className="relative py-16 md:py-20 lg:py-28 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black overflow-hidden">
+        <SparkleParticles
+          className="absolute inset-0 pointer-events-none"
+          maxParticleSize={6}
+          minParticleSize={3}
+          maxSpeed={1}
+          minMoveSpeed={0.2}
+          maxOpacity={0.7}
+          customDirection="top"
+          opacityAnimationSpeed={2}
+          minParticleOpacity={0.2}
+          particleColor="#61c021"
+          zIndexLevel={1}
+          particleCount={30}
+          particleShape="star"
+        />
+        <div className="max-w-7xl mx-auto relative z-20">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <Stagger className="text-center lg:text-left">
               <FadeIn className="relative mx-auto w-full max-w-xl lg:max-w-none">
@@ -545,8 +599,8 @@ export default function LandingPage() {
 
             <FadeIn className="relative mx-auto w-full max-w-xl lg:max-w-none">
               <div className="absolute top-10 left-1/2 -translate-x-1/2 w-full flex justify-center px-4">
-                <h2 className="text-3xl sm:text-6xl font-bold font-display mb-4">
-                  <span className={SECTION_TITLE_COLOR}>Crece sin limites</span>
+                <h2 className="text-3xl sm:text-6xl font-bold font-display mb-4 dark:text-white text-brand-500">
+                  ¡Crece sin limites!
                 </h2>
               </div>
               <Image
@@ -567,7 +621,7 @@ export default function LandingPage() {
 
 
       {/* Pricing Section */}
-      <FadeInSection className="relative z-10 py-24 px-4">
+      <FadeInSection className="relative z-10 py-12 md:py-16 lg:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
           <Stagger>
             <FadeIn className="text-center mb-16">
@@ -583,18 +637,7 @@ export default function LandingPage() {
 
             <Stagger className="grid md:grid-cols-2 gap-8">
               {/* Free Plan */}
-              <FadeIn className="relative p-1 rounded-2xl overflow-hidden">
-                {/* <BorderBeam
-                  colorFrom="#94a3b8"
-                  colorTo="#cbd5e1"
-                  size={200}
-                  duration={4}
-                  delay={0}
-                  opacity={1}
-                  borderThickness={10}
-                  glowIntensity={10}
-                  pauseOnHover={true}
-                /> */}
+              <FadeIn className="relative p-1 rounded-2xl">
                 <div className="relative p-8 rounded-2xl bg-white/80  border border-slate-200/80 dark:bg-white/5 dark:border-white/10 dark:shadow-none flex flex-col h-full z-10">
                   <Stagger className="flex flex-col h-full">
                     <FadeIn className="mb-6">
@@ -701,7 +744,7 @@ export default function LandingPage() {
       </FadeInSection>
 
       {/* Accessibility Section */}
-      <FadeInSection className="relative z-10 py-24 px-4">
+      <FadeInSection className="relative z-10 py-12 md:py-16 lg:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <Stagger className="text-center lg:text-left">
@@ -738,52 +781,65 @@ export default function LandingPage() {
       </FadeInSection>
 
       {/* Vision Section */}
-      <FadeInSection className="relative z-10 py-24 px-4">
+      <FadeInSection className="relative z-10 py-12 md:py-16 lg:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
-          <FadeIn className="relative overflow-hidden rounded-3xl">
-            {/* Background image */}
-            <div className="absolute inset-0 z-0">
-              <Image
-                src="/seccion_vision.png"
-                alt=""
-                fill
-                className="object-cover object-[center_20%] opacity-50 dark:opacity-50"
-                sizes="100vw"
-              />
-            </div>
+          <FadeIn className="relative p-1 rounded-3xl">
+            <BorderBeam
+              colorFrom="#61c021"
+              colorTo="#7ed631"
+              size={300}
+              duration={4}
+              delay={0}
+              opacity={1}
+              borderThickness={10}
+              glowIntensity={10}
+              pauseOnHover={true}
+            />
+            <div className="relative overflow-hidden rounded-3xl">
+              {/* Background image */}
+              <div className="absolute inset-0 z-0">
+                <Image
+                  src="/seccion_vision.png"
+                  alt=""
+                  fill
+                  className="object-cover object-[center_20%] opacity-50 dark:opacity-50"
+                  sizes="100vw"
+                />
+              </div>
 
-            {/* Content */}
-            <div className="relative z-10 px-8 py-16 sm:px-16 sm:py-24 text-left">
-              <Stagger>
-                <FadeIn>
-                  <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold font-display mb-6 text-brand-500 dark:text-white">
-                    Una idea simple
-                  </h2>
-                </FadeIn>
+              {/* Content */}
+              <div className="relative z-10 px-6 py-12 sm:px-12 sm:py-16 lg:px-16 lg:py-24 text-left">
+                <Stagger>
+                  <FadeIn>
+                    <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold font-display mb-6 text-brand-500 dark:text-white">
+                      Una idea simple
+                    </h2>
+                  </FadeIn>
 
-                <FadeIn>
-                  <p className="text-left dark:text-gray-300 text-slate-700 text-base sm:text-lg lg:text-xl max-w-3xl mb-4">
-                    La educación financiera debería ser clara, accesible y constante.
-                  </p>
-                  <p className="text-left dark:text-gray-400 text-slate-600 text-base sm:text-lg lg:text-xl max-w-3xl mb-10">
-                    Progressia existe para ayudarte a progresar todos los días.
-                  </p>
-                </FadeIn>
+                  <FadeIn>
+                    <p className="text-left dark:text-gray-300 text-slate-700 text-base sm:text-lg lg:text-xl max-w-3xl mb-4">
+                      La educación financiera debería ser clara, accesible y constante.
+                    </p>
+                    <p className="text-left dark:text-gray-400 text-slate-600 text-base sm:text-lg lg:text-xl max-w-3xl mb-10">
+                      Progressia existe para ayudarte a progresar todos los días.
+                    </p>
+                  </FadeIn>
 
-                <FadeIn>
-                  <WaitlistButton
-                    text="Acceso anticipado"
-                    className="bg-brand-500 hover:bg-brand-600"
-                  />
-                </FadeIn>
-              </Stagger>
+                  <FadeIn>
+                    <WaitlistButton
+                      text="Acceso anticipado"
+                      className="bg-brand-500 hover:bg-brand-600"
+                    />
+                  </FadeIn>
+                </Stagger>
+              </div>
             </div>
           </FadeIn>
         </div>
       </FadeInSection>
 
       {/* CTA Section */}
-      <FadeInSection className="relative z-10 py-24 px-4">
+      <FadeInSection className="relative z-10 py-12 md:py-16 lg:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
           <Stagger>
             <FadeIn>
@@ -823,7 +879,7 @@ export default function LandingPage() {
           sizes="100vw"
         />
 
-        <div className="pt-0 pb-12 px-4 bg-[#61c021] dark:bg-[#61c021] text-white">
+        <div className="pt-0 pb-12 px-4 sm:px-6 lg:px-8 bg-[#61c021] dark:bg-[#61c021] text-white">
           <FadeInStagger className="max-w-7xl mx-auto">
             <FadeIn className="flex flex-col md:flex-row justify-between items-center gap-6">
               <div className="flex items-center gap-2">

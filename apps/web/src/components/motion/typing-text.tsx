@@ -47,13 +47,13 @@ export function TypingText({ words, className = '' }: TypingTextProps) {
   }, [displayText, isDeleting, currentWordIndex, words])
 
   return (
-    <span className={`inline-block ${className}`}>
+    <span className={`inline-block align-baseline relative ${className}`} style={{ minWidth: '1ch' }}>
       {/* Texto invisible para reservar espacio (evita layout shift) */}
-      <span className="invisible" aria-hidden="true">
+      <span className="invisible whitespace-nowrap" aria-hidden="true">
         {longestWord}
       </span>
       {/* Texto visible animado (posicionado absolutamente) */}
-      <span className="absolute left-0">
+      <span className="absolute left-0 top-0 whitespace-nowrap">
         {displayText}
         <span className="animate-pulse">|</span>
       </span>

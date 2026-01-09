@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react'
 import type { UserSession } from 'shared'
+import { LanguageProvider } from '@/contexts/language-context'
 
 interface AuthContextType {
   user: UserSession | null
@@ -117,11 +118,13 @@ export function Providers({ children }: { children: ReactNode }) {
   }
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      <AuthContext.Provider value={{ user, isLoading, login, logout, refresh }}>
-        {children}
-      </AuthContext.Provider>
-    </ThemeContext.Provider>
+    <LanguageProvider>
+      <ThemeContext.Provider value={{ theme, toggleTheme }}>
+        <AuthContext.Provider value={{ user, isLoading, login, logout, refresh }}>
+          {children}
+        </AuthContext.Provider>
+      </ThemeContext.Provider>
+    </LanguageProvider>
   )
 }
 
