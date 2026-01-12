@@ -1,8 +1,8 @@
-# TradeX Academy 🚀
+# Progressia 🚀
 
 Plataforma educativa de trading gamificada, inspirada en Duolingo. Aprende trading de forma interactiva con lecciones, quizzes, retos con amigos y un sistema de gamificación completo.
 
-![TradeX Academy](./docs/screenshot.png)
+![Progressia](./apps/web/public/logo2.png)
 
 ## ✨ Características
 
@@ -44,7 +44,7 @@ Plataforma educativa de trading gamificada, inspirada en Duolingo. Aprende tradi
 ## 📁 Estructura del Proyecto
 
 ```
-tradex-academy/
+progressia/
 ├── apps/
 │   └── web/                 # Aplicación Next.js
 │       ├── src/
@@ -64,6 +64,11 @@ tradex-academy/
 │           ├── schemas/     # Zod schemas
 │           ├── types.ts
 │           └── constants.ts
+├── src/                     # Core components & utilities
+│   ├── components/
+│   ├── hooks/
+│   ├── lib/
+│   └── lightswind.css
 └── package.json             # Workspace root
 ```
 
@@ -78,8 +83,8 @@ tradex-academy/
 ### 1. Clonar el repositorio
 
 ```bash
-git clone https://github.com/tu-usuario/tradex-academy.git
-cd tradex-academy
+git clone https://github.com/tu-usuario/progressia.git
+cd progressia
 ```
 
 ### 2. Instalar dependencias
@@ -100,7 +105,7 @@ Edita `apps/web/.env`:
 
 ```env
 # Database
-DATABASE_URL="postgresql://usuario:password@localhost:5432/tradex_academy"
+DATABASE_URL="postgresql://usuario:password@localhost:5432/progressia"
 
 # Auth
 JWT_SECRET="tu-jwt-secret-seguro"
@@ -192,7 +197,7 @@ npm run test:coverage
 
 ## ⚠️ Disclaimer
 
-TradeX Academy es una plataforma educativa. El contenido proporcionado es únicamente con fines informativos y educativos. **NO constituye asesoría financiera, de inversión o de trading.** Operar en mercados financieros conlleva riesgos significativos y puede resultar en la pérdida de capital. Consulta siempre con un asesor financiero profesional antes de tomar decisiones de inversión.
+Progressia es una plataforma educativa. El contenido proporcionado es únicamente con fines informativos y educativos. **NO constituye asesoría financiera, de inversión o de trading.** Operar en mercados financieros conlleva riesgos significativos y puede resultar en la pérdida de capital. Consulta siempre con un asesor financiero profesional antes de tomar decisiones de inversión.
 
 ## 📄 Licencia
 
