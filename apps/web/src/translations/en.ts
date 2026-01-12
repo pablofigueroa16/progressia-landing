@@ -142,7 +142,7 @@ export default {
     contact: 'Contact',
     riskTitle: 'Risk Warning:',
     riskDescription: 'Progressia is an educational platform. The content does not constitute financial advice. Operating in financial markets carries significant risks. Always consult with a professional before investing.',
-    copyright: '© 2024 Progressia. All rights reserved.',
+    copyright: '© 2026 Progressia. All rights reserved.',
   },
   waitlist: {
     close: 'Close',

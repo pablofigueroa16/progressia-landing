@@ -1,6 +1,6 @@
 'use client'
 
-import React, { createContext, useContext, useEffect, useMemo, useState } from 'react'
+import React, { createContext, useContext, useEffect, useMemo, useRef, useState } from 'react'
 import es from '@/translations/es'
 import en from '@/translations/en'
 
@@ -16,23 +16,35 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 
 const TRANSLATIONS: Record<Language, any> = { es, en }
 
-function getInitialLanguage(): Language {
-  if (typeof window === 'undefined') return 'es'
-  try {
-    const saved = localStorage.getItem('language') as Language | null
-    if (saved === 'es' || saved === 'en') return saved
-  } catch {
-    // ignore
-  }
-  const browserLang = (navigator.language || 'es').toLowerCase()
-  return browserLang.startsWith('en') ? 'en' : 'es'
-}
-
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguageState] = useState<Language>(() => getInitialLanguage())
+  const [language, setLanguageState] = useState<Language>('es')
+  const didMountRef = useRef(false)
 
-  // Keep in sync with localStorage when user toggles
   useEffect(() => {
+    let next: Language = 'es'
+
+    try {
+      const saved = localStorage.getItem('language') as Language | null
+      if (saved === 'es' || saved === 'en') {
+        next = saved
+      } else {
+        const browserLang = (navigator.language || 'es').toLowerCase()
+        next = browserLang.startsWith('en') ? 'en' : 'es'
+      }
+    } catch {
+      const browserLang = (navigator.language || 'es').toLowerCase()
+      next = browserLang.startsWith('en') ? 'en' : 'es'
+    }
+
+    setLanguageState(prev => (prev === next ? prev : next))
+  }, [])
+
+  useEffect(() => {
+    if (!didMountRef.current) {
+      didMountRef.current = true
+      return
+    }
+
     try {
       localStorage.setItem('language', language)
     } catch {

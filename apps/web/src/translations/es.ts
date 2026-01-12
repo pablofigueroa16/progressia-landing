@@ -142,7 +142,7 @@ export default {
     contact: 'Contacto',
     riskTitle: 'Aviso de Riesgo:',
     riskDescription: 'Progressia es una plataforma educativa. El contenido no constituye asesoría financiera. Operar en mercados financieros conlleva riesgos significativos. Consulta siempre con un profesional antes de invertir.',
-    copyright: '© 2024 Progressia. Todos los derechos reservados.',
+    copyright: '© 2026 Progressia. Todos los derechos reservados.',
   },
   waitlist: {
     close: 'Cerrar',
